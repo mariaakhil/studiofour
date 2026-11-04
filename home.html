@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Studio Four Media Works</title>
+
+  <!-- Poppins font (falls back to Inter / system sans-serif) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="home.css">
+</head>
+
+<body>
+
+  <!-- =========================================================
+       NAVBAR
+       ========================================================= -->
+  <header class="navbar" id="navbar">
+
+    <!-- CSS-only toggle for the mobile menu -->
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Toggle menu">
+
+    <div class="navbar-inner">
+
+      <!-- Logo (left) -->
+      <a href="home.html" class="logo" aria-label="Studio Four Media Works – Home">
+        <img src="images/Studio_Four_Logo%20(1).png" alt="Studio Four Media Works">
+      </a>
+
+      <!-- Desktop nav links (center) -->
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="home.html" class="active" aria-current="page">Home</a>
+        <a href="work.html">Work</a>
+        <a href="services.html">Services</a>
+        <a href="about.html">About</a>
+        <a href="blogs.html">Blog</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+
+      <!-- Book Now (right) + hamburger (mobile only) -->
+      <div class="nav-actions">
+        <a href="contact.html" class="btn-book">Book Now <span class="arrow">&rarr;</span></a>
+        <label for="nav-toggle" class="hamburger" aria-label="Open menu">
+          <span></span><span></span><span></span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Mobile slide-down menu -->
+    <div class="mobile-menu">
+      <div class="mobile-menu-top">
+        <a href="home.html" class="logo" aria-label="Studio Four Media Works – Home">
+          <img src="images/Studio_Four_Logo%20(1).png" alt="Studio Four Media Works">
+        </a>
+        <label for="nav-toggle" class="close-btn" aria-label="Close menu">&times;</label>
+      </div>
+
+      <nav class="mobile-links" aria-label="Mobile navigation">
+        <a href="home.html" class="active" aria-current="page">Home</a>
+        <a href="work.html">Work</a>
+        <a href="services.html">Services</a>
+        <a href="about.html">About</a>
+        <a href="blogs.html">Blog</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+
+      <div class="mobile-menu-bottom">
+        <a href="contact.html" class="btn-book">Book Now <span class="arrow">&rarr;</span></a>
+        <div class="mobile-phones">
+          <a href="tel:+919074371711">90743 71711</a><span class="sep">|</span>
+          <a href="tel:+916238371711">62383 71711</a><span class="sep">|</span>
+          <a href="tel:+919567171711">95671 71711</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- =========================================================
+       HERO SECTION
+       ========================================================= -->
+  <section class="hero" id="home">
+    <div class="hero-inner">
+
+      <!-- LEFT: text content -->
+      <div class="hero-left">
+        <span class="hero-badge">
+          <span class="dot"></span>
+          Trusted by 100+ Schools Across South India
+        </span>
+
+        <h1 class="hero-title">
+          Capturing Moments.<br>
+          Creating Memories.<br>
+          <span class="accent">Setting New Trends.</span>
+        </h1>
+
+        <p class="hero-text">
+          Premium photography &amp; media solutions for schools, colleges, and events
+          across South India. Professional, timely, and unforgettable.
+        </p>
+
+        <div class="hero-buttons">
+          <a href="contact.html" class="hero-btn hero-btn-primary">Book a Shoot</a>
+          <a href="work.html" class="hero-btn hero-btn-outline">View Work</a>
+        </div>
+
+        <!-- Trust stats -->
+        <div class="hero-stats">
+          <div class="stat-card">
+            <span class="stat-icon" aria-hidden="true">🎓</span>
+            <strong class="stat-num">100+ Schools</strong>
+            <span class="stat-label">Trusted by institutions</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-icon" aria-hidden="true">📸</span>
+            <strong class="stat-num">500+ Events</strong>
+            <span class="stat-label">Covered &amp; counting</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-icon" aria-hidden="true">⏱️</span>
+            <strong class="stat-num">7-Day Delivery</strong>
+            <span class="stat-label">Fast turnaround</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-icon" aria-hidden="true">⭐</span>
+            <strong class="stat-num">4.9 Rating</strong>
+            <span class="stat-label">Trusted by clients</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: hero image + floating elements -->
+      <div class="hero-right">
+        <img src="images/hero-graduation.jpg" alt="Graduation Students" class="hero-img">
+
+        <div class="hero-float-badge">2026<br>&bull; New Trends</div>
+
+        <div class="hero-float-card">
+          <span class="dot"></span>
+          <div>
+            <strong>7-Day Delivery Guaranteed</strong>
+            <span>Edited photos &amp; videos in 7 days</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================================================
+       VIDEO SLIDER SECTION
+       Put your videos in /videos (video1.mp4 ...) and posters in /images
+       ========================================================= -->
+  <section class="vslider" id="work">
+    <div class="vslider-inner">
+
+      <!-- Heading + arrows -->
+      <div class="vslider-head">
+        <div>
+          <span class="vslider-eyebrow">Our Work</span>
+          <h2 class="vslider-title">Stories We've Captured</h2>
+          <p class="vslider-sub">Watch highlights from schools, colleges and events across South India.</p>
+        </div>
+        <div class="vslider-arrows">
+          <button type="button" class="vslider-arrow" id="vs-prev" aria-label="Previous videos">&larr;</button>
+          <button type="button" class="vslider-arrow" id="vs-next" aria-label="Next videos">&rarr;</button>
+        </div>
+      </div>
+
+      <!-- Slider track (scroll-snap) -->
+      <div class="vslider-track" id="vs-track">
+
+        <article class="vslide">
+          <video controls preload="metadata" poster="images/video1-poster.jpg">
+            <source src="videos/video1.mp4" type="video/mp4">
+          </video>
+          <div class="vslide-info">
+            <h3>Graduation Day Highlights</h3>
+            <span>School Event</span>
+          </div>
+        </article>
+
+        <article class="vslide">
+          <video controls preload="metadata" poster="images/video2-poster.jpg">
+            <source src="videos/video2.mp4" type="video/mp4">
+          </video>
+          <div class="vslide-info">
+            <h3>Annual Day Celebration</h3>
+            <span>School Event</span>
+          </div>
+        </article>
+
+        <article class="vslide">
+          <video controls preload="metadata" poster="images/video3-poster.jpg">
+            <source src="videos/video3.mp4" type="video/mp4">
+          </video>
+          <div class="vslide-info">
+            <h3>College Fest Aftermovie</h3>
+            <span>College Event</span>
+          </div>
+        </article>
+
+        <article class="vslide">
+          <video controls preload="metadata" poster="images/video4-poster.jpg">
+            <source src="videos/video4.mp4" type="video/mp4">
+          </video>
+          <div class="vslide-info">
+            <h3>Sports Day Reel</h3>
+            <span>School Event</span>
+          </div>
+        </article>
+
+        <article class="vslide">
+          <video controls preload="metadata" poster="images/video5-poster.jpg">
+            <source src="videos/video5.mp4" type="video/mp4">
+          </video>
+          <div class="vslide-info">
+            <h3>Campus Promo Film</h3>
+            <span>Corporate</span>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       COMPLETE SOLUTIONS SECTION
+       ========================================================= -->
+  <section class="solutions-section" id="services">
+
+    <!-- Header -->
+    <div class="solutions-header">
+      <span class="solutions-pill">What We Do</span>
+      <h2 class="solutions-title">Complete Solutions</h2>
+      <p class="solutions-sub">Everything you need for your institution, covered end-to-end</p>
+    </div>
+
+    <!-- 6 cards: 3 x 2 on desktop -->
+    <div class="solutions-grid">
+
+      <!-- 1. Highlighted card -->
+      <article class="solution-card featured">
+        <span class="popular">Most Popular</span>
+        <div class="solution-icon" aria-hidden="true">🎓</div>
+        <h3>Graduation Concept Albums</h3>
+        <p>Custom designed albums with premium print, concept shoots &amp; digital delivery.</p>
+        <div class="solution-tags">
+          <span class="solution-tag">Concept Shoot</span>
+          <span class="solution-tag">Premium Print</span>
+        </div>
+        <a href="#" class="solution-link">Learn More <span>&rarr;</span></a>
+      </article>
+
+      <!-- 2 -->
+      <article class="solution-card">
+        <div class="solution-icon" aria-hidden="true">🪪</div>
+        <h3>Smart ID Cards</h3>
+        <p>QR-enabled, durable PVC ID cards for students &amp; staff with fast bulk printing.</p>
+        <div class="solution-tags">
+          <span class="solution-tag">QR Enabled</span>
+          <span class="solution-tag">PVC</span>
+          <span class="solution-tag">Bulk</span>
+        </div>
+        <a href="#" class="solution-link">Learn More <span>&rarr;</span></a>
+      </article>
+
+      <!-- 3 -->
+      <article class="solution-card">
+        <div class="solution-icon" aria-hidden="true">👥</div>
+        <h3>Group Photography</h3>
+        <p>Large group shots, class photos &amp; batch photos with professional setup &amp; lighting.</p>
+        <div class="solution-tags">
+          <span class="solution-tag">Class Photos</span>
+          <span class="solution-tag">Batch Photos</span>
+        </div>
+        <a href="#" class="solution-link">Learn More <span>&rarr;</span></a>
+      </article>
+
+      <!-- 4 -->
+      <article class="solution-card">
+        <div class="solution-icon" aria-hidden="true">📸</div>
+        <h3>Event Coverage</h3>
+        <p>Photo &amp; video coverage for fests, annual day, sports day, seminars &amp; functions.</p>
+        <div class="solution-tags">
+          <span class="solution-tag">Photo</span>
+          <span class="solution-tag">Video</span>
+          <span class="solution-tag">Full Day</span>
+        </div>
+        <a href="#" class="solution-link">Learn More <span>&rarr;</span></a>
+      </article>
+
+      <!-- 5 -->
+      <article class="solution-card">
+        <div class="solution-icon" aria-hidden="true">🚁</div>
+        <h3>Drone Coverage</h3>
+        <p>Aerial shots for campus, events &amp; group photos - cinematic drone views.</p>
+        <div class="solution-tags">
+          <span class="solution-tag">Aerial</span>
+          <span class="solution-tag">4K Drone</span>
+        </div>
+        <a href="#" class="solution-link">Learn More <span>&rarr;</span></a>
+      </article>
+
+      <!-- 6 -->
+      <article class="solution-card">
+        <div class="solution-icon" aria-hidden="true">🎬</div>
+        <h3>Photo &amp; Video Editing</h3>
+        <p>Retouch, color grading, reels edit &amp; highlight films - delivered in 7 days.</p>
+        <div class="solution-tags">
+          <span class="solution-tag">Retouch</span>
+          <span class="solution-tag">Reels Edit</span>
+        </div>
+        <a href="#" class="solution-link">Learn More <span>&rarr;</span></a>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- =========================================================
+       WHY CHOOSE US SECTION
+       ========================================================= -->
+  <section class="why-section" id="about">
+    <div class="why-inner">
+
+      <div class="why-grid">
+
+        <!-- LEFT: pill, heading, text, image + stats badge -->
+        <div class="why-left">
+          <span class="why-pill">Why Studio Four</span>
+          <h2 class="why-title">Why Choose Us?</h2>
+          <p class="why-text">
+            We don't just take photos. We create memories schools are proud of -
+            safe, on-time, and premium quality every time.
+          </p>
+
+          <div class="why-image">
+            <img src="images/why-choose-us.jpg" alt="School Photography Team">
+            <div class="why-badge">
+              <strong>100+ Schools Trust Us</strong>
+              <span class="why-stars" aria-label="5 stars">★★★★★</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT: 5 points -->
+        <div class="why-right">
+
+          <article class="why-card">
+            <div class="why-icon" aria-hidden="true">👨‍🏫</div>
+            <div>
+              <h3>Experienced School Team</h3>
+              <p>10+ years working only with schools &amp; colleges. We know how to handle kids, crowds &amp; principals.</p>
+            </div>
+          </article>
+
+          <article class="why-card">
+            <div class="why-icon" aria-hidden="true">⭐</div>
+            <div>
+              <h3>Premium Quality Prints &amp; Digital</h3>
+              <p>High-resolution, print-ready photos + secure online gallery for parents &amp; schools.</p>
+            </div>
+          </article>
+
+          <article class="why-card">
+            <div class="why-icon" aria-hidden="true">🛡️</div>
+            <div>
+              <h3>Safe &amp; Child-Friendly Approach</h3>
+              <p>Verified team, no misuse of photos, parental consent &amp; child safety first - always.</p>
+            </div>
+          </article>
+
+          <article class="why-card">
+            <div class="why-icon" aria-hidden="true">🎨</div>
+            <div>
+              <h3>Custom Branded Deliverables</h3>
+              <p>Your school logo, colours &amp; name on every album, ID card &amp; video - fully customised.</p>
+            </div>
+          </article>
+
+          <article class="why-card">
+            <div class="why-icon" aria-hidden="true">📞</div>
+            <div>
+              <h3>24/7 Support for Schools</h3>
+              <p>Dedicated manager on WhatsApp &amp; Call. We respond within 2 hours, even on event day.</p>
+            </div>
+          </article>
+
+        </div>
+      </div>
+
+      <!-- Bottom CTA strip -->
+      <div class="why-cta">
+        <div class="why-cta-text">
+          <strong>Still confused? Talk to our team today.</strong>
+          <span>Free consultation, no commitment.</span>
+        </div>
+        <a href="tel:9074371711" class="why-cta-btn">Call Now - 90743 71711</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================================================
+       PORTFOLIO GALLERY SECTION
+       ========================================================= -->
+  <section class="portfolio-section" id="portfolio">
+
+    <!-- Header -->
+    <div class="portfolio-header">
+      <span class="portfolio-pill">Our Work</span>
+      <h2 class="portfolio-title">Portfolio Gallery</h2>
+      <p class="portfolio-sub">Real work from real schools - Graduation, Events, ID Cards &amp; more</p>
+    </div>
+
+    <!-- Filter buttons -->
+    <div class="portfolio-filters" role="group" aria-label="Filter gallery">
+      <button type="button" class="filter-btn active" data-filter="all">All</button>
+      <button type="button" class="filter-btn" data-filter="Graduation">Graduation</button>
+      <button type="button" class="filter-btn" data-filter="Events">Events</button>
+      <button type="button" class="filter-btn" data-filter="Group Photos">Group Photos</button>
+      <button type="button" class="filter-btn" data-filter="ID Cards">ID Cards</button>
+    </div>
+
+    <!-- Gallery grid: 3 x 2 on desktop -->
+    <div class="gallery-grid" id="gallery-grid">
+
+      <figure class="gallery-item" data-category="Graduation">
+        <img src="images/gallery-1.jpg" alt="Graduation 2025 at St. Mary's College, Palakkad" loading="lazy">
+        <figcaption class="gallery-overlay">
+          <span class="gallery-cat">Graduation</span>
+          <strong>Graduation 2025</strong>
+          <span class="gallery-loc">St. Mary's College, Palakkad</span>
+        </figcaption>
+      </figure>
+
+      <figure class="gallery-item" data-category="Events">
+        <img src="images/gallery-2.jpg" alt="Annual Day at Kochi Public School" loading="lazy">
+        <figcaption class="gallery-overlay">
+          <span class="gallery-cat">Events</span>
+          <strong>Annual Day</strong>
+          <span class="gallery-loc">Kochi Public School</span>
+        </figcaption>
+      </figure>
+
+      <figure class="gallery-item" data-category="Group Photos">
+        <img src="images/gallery-3.jpg" alt="Class of 2026 batch photo, Thrissur" loading="lazy">
+        <figcaption class="gallery-overlay">
+          <span class="gallery-cat">Group Photos</span>
+          <strong>Class of 2026 Batch Photo</strong>
+          <span class="gallery-loc">Thrissur</span>
+        </figcaption>
+      </figure>
+
+      <figure class="gallery-item" data-category="Graduation">
+        <img src="images/gallery-4.jpg" alt="Convocation moments at Calicut University" loading="lazy">
+        <figcaption class="gallery-overlay">
+          <span class="gallery-cat">Graduation</span>
+          <strong>Convocation Moments</strong>
+          <span class="gallery-loc">Calicut University</span>
+        </figcaption>
+      </figure>
+
+      <figure class="gallery-item" data-category="ID Cards">
+        <img src="images/gallery-5.jpg" alt="Smart ID card shoot, Kozhikode" loading="lazy">
+        <figcaption class="gallery-overlay">
+          <span class="gallery-cat">ID Cards</span>
+          <strong>Smart ID Card Shoot</strong>
+          <span class="gallery-loc">Kozhikode</span>
+        </figcaption>
+      </figure>
+
+      <figure class="gallery-item" data-category="Events">
+        <img src="images/gallery-6.jpg" alt="College fest highlights, Ernakulam" loading="lazy">
+        <figcaption class="gallery-overlay">
+          <span class="gallery-cat">Events</span>
+          <strong>College Fest Highlights</strong>
+          <span class="gallery-loc">Ernakulam</span>
+        </figcaption>
+      </figure>
+
+    </div>
+
+    <!-- Bottom button -->
+    <div class="portfolio-more">
+      <a href="work.html" class="portfolio-btn">View Full Portfolio <span>&rarr;</span></a>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       TESTIMONIALS SECTION
+       ========================================================= -->
+  <section class="testimonials-section" id="testimonials">
+
+    <!-- Header -->
+    <div class="testimonials-header">
+      <span class="testimonials-pill">Testimonials</span>
+      <h2 class="testimonials-title">What Schools Say About Us</h2>
+      <p class="testimonials-sub">Trusted by Principals, Teachers &amp; Parents across South India</p>
+      <p class="testimonials-rating">
+        <span class="rating-stars" aria-hidden="true">★★★★★</span>
+        4.9 / 5 - Based on 200+ Reviews
+      </p>
+    </div>
+
+    <!-- 3 cards -->
+    <div class="testimonial-grid">
+
+      <!-- 1 -->
+      <article class="testimonial-card">
+        <span class="quote-mark" aria-hidden="true">&ldquo;</span>
+        <div class="testimonial-stars" aria-label="5 out of 5 stars">★★★★★</div>
+        <p class="testimonial-text">
+          Studio Four handled our Graduation Day perfectly. On-time delivery, beautiful albums,
+          and the parents loved it. Best team we have worked with in 10 years.
+        </p>
+        <div class="testimonial-profile">
+          <img src="images/person.svg" alt="Fr. Thomas Mathew">
+          <div>
+            <strong>Fr. Thomas Mathew</strong>
+            <span>Principal - St. Mary's College, Palakkad</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- 2: highlighted -->
+      <article class="testimonial-card featured">
+        <span class="testimonial-badge">Most Loved</span>
+        <span class="quote-mark" aria-hidden="true">&ldquo;</span>
+        <div class="testimonial-stars" aria-label="5 out of 5 stars">★★★★★</div>
+        <p class="testimonial-text">
+          From ID cards to Annual Day coverage - everything was professional and hassle-free.
+          Their drone shots were amazing! Highly recommended for any school.
+        </p>
+        <div class="testimonial-profile">
+          <img src="images/person.svg" alt="Mrs. Priya Nair">
+          <div>
+            <strong>Mrs. Priya Nair</strong>
+            <span>Principal - Kochi Public School, Kochi</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- 3 -->
+      <article class="testimonial-card">
+        <span class="quote-mark" aria-hidden="true">&ldquo;</span>
+        <div class="testimonial-stars" aria-label="5 out of 5 stars">★★★★★</div>
+        <p class="testimonial-text">
+          Very child-friendly team, safe process, and excellent quality. Our batch photo and
+          ID cards came in just 6 days. We will book them every year.
+        </p>
+        <div class="testimonial-profile">
+          <img src="images/person.svg" alt="Mr. Rajesh Kumar">
+          <div>
+            <strong>Mr. Rajesh Kumar</strong>
+            <span>Vice Principal - Calicut University, Calicut</span>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- Logo strip -->
+    <div class="testimonials-logos">
+      <p>Trusted by schools in</p>
+      <ul>
+        <li>St. Mary's</li>
+        <li>Kochi Public</li>
+        <li>Calicut University</li>
+        <li>Thrissur High School</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       BLOG SECTION
+       ========================================================= -->
+  <section class="blog-section" id="blog">
+
+    <!-- Header -->
+    <div class="blog-header">
+      <span class="blog-pill">Our Blog</span>
+      <h2 class="blog-title">Latest From Our Blog</h2>
+      <p class="blog-sub">Tips, ideas and stories from our shoots across South India</p>
+    </div>
+
+    <!-- 3 post cards -->
+    <div class="blog-grid">
+
+      <article class="blog-card">
+        <a href="#" class="blog-thumb">
+          <img src="images/blog-1.jpg" alt="Graduation day photoshoot" loading="lazy">
+          <span class="blog-cat">Graduation</span>
+        </a>
+        <div class="blog-body">
+          <span class="blog-meta">4 min read</span>
+          <h3><a href="#">How to Plan the Perfect Graduation Day Photoshoot</a></h3>
+          <p>From outfits to locations and timing - a simple checklist so every student gets their moment.</p>
+          <a href="#" class="blog-link">Read More <span>&rarr;</span></a>
+        </div>
+      </article>
+
+      <article class="blog-card">
+        <a href="#" class="blog-thumb">
+          <img src="images/blog-2.jpg" alt="Smart ID cards for students" loading="lazy">
+          <span class="blog-cat">ID Cards</span>
+        </a>
+        <div class="blog-body">
+          <span class="blog-meta">3 min read</span>
+          <h3><a href="#">Why Smart ID Cards Are Worth It for Your School</a></h3>
+          <p>QR-enabled PVC cards make attendance, safety and bulk printing faster and easier to manage.</p>
+          <a href="#" class="blog-link">Read More <span>&rarr;</span></a>
+        </div>
+      </article>
+
+      <article class="blog-card">
+        <a href="#" class="blog-thumb">
+          <img src="images/blog-3.jpg" alt="Drone view of a school campus" loading="lazy">
+          <span class="blog-cat">Drone</span>
+        </a>
+        <div class="blog-body">
+          <span class="blog-meta">5 min read</span>
+          <h3><a href="#">Drone Photography: A New Way to Capture Your Campus</a></h3>
+          <p>Cinematic aerial shots that show off your campus, annual day and batch photos from above.</p>
+          <a href="#" class="blog-link">Read More <span>&rarr;</span></a>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- Bottom button -->
+    <div class="blog-more">
+      <a href="blogs.html" class="blog-btn">View All Posts <span>&rarr;</span></a>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       OUR PRESENCE SECTION
+       ========================================================= -->
+  <section class="presence-section" id="presence">
+
+    <!-- Header -->
+    <div class="presence-header">
+      <span class="presence-pill">Our Presence</span>
+      <h2 class="presence-title">Serving Across South India</h2>
+      <p class="presence-sub">We travel to your school - wherever you are</p>
+    </div>
+
+    <!-- 3 location cards -->
+    <div class="presence-grid">
+
+      <article class="presence-card">
+        <div class="presence-pin" aria-hidden="true">📍</div>
+        <h3>Kerala</h3>
+        <p>Palakkad &bull; Kochi &bull; Kozhikode &bull; Thrissur</p>
+        <span class="presence-tag head">Head Office - Palakkad</span>
+      </article>
+
+      <article class="presence-card">
+        <div class="presence-pin" aria-hidden="true">📍</div>
+        <h3>Tamil Nadu</h3>
+        <p>Coimbatore &bull; Chennai &bull; Madurai</p>
+        <span class="presence-tag">Active</span>
+      </article>
+
+      <article class="presence-card">
+        <div class="presence-pin" aria-hidden="true">📍</div>
+        <h3>Karnataka</h3>
+        <p>Bengaluru &bull; Mysuru</p>
+        <span class="presence-tag">Active</span>
+      </article>
+
+    </div>
+
+    <p class="presence-note">
+      Not in list? We travel - <a href="tel:9074371711">Call 90743 71711</a>
+    </p>
+  </section>
+
+
+  <!-- =========================================================
+       FAQ SECTION
+       ========================================================= -->
+  <section class="faq-section" id="faq">
+    <div class="faq-inner">
+
+      <!-- LEFT: heading + WhatsApp button -->
+      <div class="faq-left">
+        <span class="faq-pill">FAQ</span>
+        <h2 class="faq-title">Frequently Asked Questions</h2>
+        <p class="faq-text">Still have questions? WhatsApp us - we reply in 2 hours.</p>
+        <a href="https://wa.me/919074371711" class="faq-btn" target="_blank" rel="noopener">Chat on WhatsApp</a>
+      </div>
+
+      <!-- RIGHT: accordion (first item open by default) -->
+      <div class="faq-right">
+
+        <div class="faq-item open">
+          <button type="button" class="faq-question" aria-expanded="true" aria-controls="faq-a1" id="faq-q1">
+            <span>How early should we book?</span>
+            <span class="faq-icon" aria-hidden="true"></span>
+          </button>
+          <div class="faq-answer" id="faq-a1" role="region" aria-labelledby="faq-q1">
+            <p>At least 2 weeks before your event is ideal. But for urgent shoots, call us - we try to arrange within 48 hours if team is available.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button type="button" class="faq-question" aria-expanded="false" aria-controls="faq-a2" id="faq-q2">
+            <span>What is included in Graduation Package?</span>
+            <span class="faq-icon" aria-hidden="true"></span>
+          </button>
+          <div class="faq-answer" id="faq-a2" role="region" aria-labelledby="faq-q2">
+            <p>Concept shoot, group photo, individual portraits, designed album, digital gallery &amp; 1 highlight reel. Custom add-ons like drone &amp; ID cards available.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button type="button" class="faq-question" aria-expanded="false" aria-controls="faq-a3" id="faq-q3">
+            <span>How long does delivery take?</span>
+            <span class="faq-icon" aria-hidden="true"></span>
+          </button>
+          <div class="faq-answer" id="faq-a3" role="region" aria-labelledby="faq-q3">
+            <p>Edited photos &amp; videos in 7 working days. Albums &amp; printed ID cards in 10-12 days. Express delivery available on request.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button type="button" class="faq-question" aria-expanded="false" aria-controls="faq-a4" id="faq-q4">
+            <span>Do you charge for travel outside Palakkad?</span>
+            <span class="faq-icon" aria-hidden="true"></span>
+          </button>
+          <div class="faq-answer" id="faq-a4" role="region" aria-labelledby="faq-q4">
+            <p>For Kochi, Kozhikode &amp; nearby districts - no extra travel charge for 1-day shoots. For Tamil Nadu &amp; Karnataka, small travel charge applies - we quote upfront, no hidden charges.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =========================================================
+       FINAL CTA SECTION
+       ========================================================= -->
+  <section class="cta-section" id="book">
+    <div class="cta-banner">
+      <span class="cta-pill">Limited Slots for 2026</span>
+      <h2 class="cta-title">Let's Create Something Memorable</h2>
+      <p class="cta-text">Book your free consultation today - no advance, no commitment. We will plan your shoot together.</p>
+
+      <div class="cta-buttons">
+        <a href="contact.html" class="cta-btn cta-btn-light">Get Free Consultation <span>&rarr;</span></a>
+        <a href="tel:9074371711" class="cta-btn cta-btn-outline">Call 90743 71711</a>
+      </div>
+
+      <p class="cta-proof">⭐ 4.9 Rating &bull; 100+ Schools &bull; 7-Day Delivery</p>
+    </div>
+  </section>
+
+
+  <!-- =========================================================
+       FOOTER
+       ========================================================= -->
+  <footer class="footer">
+    <div class="footer-grid">
+
+      <!-- Column 1: brand -->
+      <div class="footer-col footer-brand">
+        <!-- Text logo (swap for <img src="logo-white.png" alt="Studio Four Media Works"> once the white logo exists) -->
+        <a href="home.html" class="footer-logo" aria-label="Studio Four Media Works">
+          <strong>STUDIO FOUR</strong>
+          <span>MEDIA WORKS</span>
+        </a>
+        <p>Premium photography &amp; media solutions for schools, colleges &amp; events across South India. Capturing moments, creating memories.</p>
+
+        <div class="footer-social">
+          <a href="#" aria-label="Instagram">📸</a>
+          <a href="#" aria-label="Facebook">f</a>
+          <a href="#" aria-label="YouTube">▶</a>
+          <a href="#" aria-label="WhatsApp">💬</a>
+        </div>
+      </div>
+
+      <!-- Column 2: quick links -->
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <a href="home.html">Home</a>
+        <a href="work.html">Work</a>
+        <a href="services.html">Services</a>
+        <a href="about.html">About Us</a>
+        <a href="blogs.html">Blog</a>
+        <a href="contact.html">Contact</a>
+      </div>
+
+      <!-- Column 3: services -->
+      <div class="footer-col">
+        <h4>Our Services</h4>
+        <a href="#">Graduation Albums</a>
+        <a href="#">Smart ID Cards</a>
+        <a href="#">Group Photography</a>
+        <a href="#">Event Coverage</a>
+        <a href="#">Drone Coverage</a>
+        <a href="#">Editing</a>
+      </div>
+
+      <!-- Column 4: contact -->
+      <div class="footer-col footer-contact">
+        <h4>Contact Us</h4>
+        <a href="tel:9074371711" class="footer-phone">📞 90743 71711</a>
+        <a href="tel:6238371711">📞 62383 71711</a>
+        <a href="tel:9567171711">📞 95671 71711</a>
+        <a href="mailto:hello@studiofour.in">✉️ hello@studiofour.in</a>
+        <span>📍 Palakkad, Kerala, India</span>
+        <span>🕒 Mon - Sat: 9 AM - 7 PM</span>
+      </div>
+
+    </div>
+
+    <hr class="footer-line">
+
+    <div class="footer-bottom">
+      <p>&copy; 2026 Studio Four Media Works. All Rights Reserved.</p>
+      <p><a href="#">Privacy Policy</a> &bull; <a href="#">Terms of Service</a> &bull; Made in Kerala ❤️</p>
+    </div>
+  </footer>
+
+  <!-- Tiny vanilla JS: add shadow on scroll + close menu when a link is tapped -->
+  <script>
+    (function () {
+      var navbar = document.getElementById('navbar');
+      var toggle = document.getElementById('nav-toggle');
+
+      function onScroll() {
+        navbar.classList.toggle('scrolled', window.scrollY > 4);
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+
+      document.querySelectorAll('.mobile-menu a').forEach(function (a) {
+        a.addEventListener('click', function () { toggle.checked = false; });
+      });
+    })();
+  </script>
+
+  <!-- Video slider: arrow buttons scroll one slide; disabled at the ends -->
+  <script>
+    (function () {
+      var track = document.getElementById('vs-track');
+      var prev = document.getElementById('vs-prev');
+      var next = document.getElementById('vs-next');
+
+      function step() {
+        var slide = track.querySelector('.vslide');
+        return slide.offsetWidth + 20; /* slide width + gap */
+      }
+      function update() {
+        prev.disabled = track.scrollLeft <= 4;
+        next.disabled = track.scrollLeft + track.clientWidth >= track.scrollWidth - 4;
+      }
+      prev.addEventListener('click', function () { track.scrollBy({ left: -step(), behavior: 'smooth' }); });
+      next.addEventListener('click', function () { track.scrollBy({ left: step(), behavior: 'smooth' }); });
+      track.addEventListener('scroll', update, { passive: true });
+      window.addEventListener('resize', update);
+      update();
+    })();
+  </script>
+
+  <!-- Portfolio filter: fade items out/in by data-category -->
+  <script>
+    (function () {
+      var buttons = document.querySelectorAll('.filter-btn');
+      var items = document.querySelectorAll('.gallery-item');
+
+      buttons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var filter = btn.getAttribute('data-filter');
+
+          buttons.forEach(function (b) { b.classList.toggle('active', b === btn); });
+
+          items.forEach(function (item) {
+            var match = filter === 'all' || item.getAttribute('data-category') === filter;
+
+            if (match) {
+              item.hidden = false;
+              void item.offsetWidth;               /* restart the transition */
+              item.classList.remove('is-hiding');
+            } else {
+              item.classList.add('is-hiding');
+              setTimeout(function () {
+                if (item.classList.contains('is-hiding')) item.hidden = true;
+              }, 300);
+            }
+          });
+        });
+      });
+    })();
+  </script>
+
+  <!-- FAQ accordion: one item open at a time -->
+  <script>
+    (function () {
+      var items = document.querySelectorAll('.faq-item');
+
+      items.forEach(function (item) {
+        item.querySelector('.faq-question').addEventListener('click', function () {
+          var wasOpen = item.classList.contains('open');
+
+          /* close everything, then re-open the clicked one if it was closed */
+          items.forEach(function (i) {
+            i.classList.remove('open');
+            i.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+          });
+
+          if (!wasOpen) {
+            item.classList.add('open');
+            item.querySelector('.faq-question').setAttribute('aria-expanded', 'true');
+          }
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

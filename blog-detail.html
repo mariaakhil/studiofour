@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>7 Graduation Photo Poses Every School Should Try in 2026 | Studio Four Media Works</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;1,400&family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap" rel="stylesheet">
+
+  <style>
+    /* =========================================================
+       DESIGN TOKENS – Studio Four brand colours only
+       ========================================================= */
+    :root {
+      --orange: #E94E1B;
+      --maroon: #7A0C1A;
+      --offwhite: #FFF9F5;
+      --white: #FFFFFF;
+      --text: #2B2B2B;
+      --border: #EDE6E0;
+      --light-orange: #FFF0E8;
+      --gradient: linear-gradient(135deg, #7A0C1A, #E94E1B);
+      --font: 'Poppins', 'Inter', system-ui, sans-serif;
+      --nav-h: 76px;
+      --ease: 0.3s ease;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font);
+      color: var(--text);
+      background: var(--offwhite);
+      padding-top: var(--nav-h); /* room for the fixed navbar */
+      overflow-x: hidden;        /* no horizontal scroll */
+    }
+    body:has(.nav-toggle:checked) { overflow: hidden; }
+
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; color: inherit; }
+
+    /* =========================================================
+       SECTION 0 – READING PROGRESS BAR (fixed top)
+       Sits above the navbar (z-index 1200) so it is always visible
+       ========================================================= */
+    .progress-bar {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 4px;
+      background: var(--border);
+      z-index: 1200;
+    }
+    .progress-fill {
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, #7A0C1A, #E94E1B);
+      transition: width .1s linear;
+    }
+
+    /* =========================================================
+       NAVBAR (same as home page)
+       ========================================================= */
+    .navbar {
+      position: fixed; top: 0; left: 0; width: 100%;
+      z-index: 1000;
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      transition: box-shadow var(--ease);
+    }
+    .navbar.scrolled { box-shadow: 0 4px 18px rgba(43, 43, 43, 0.10); }
+    .nav-toggle { position: absolute; opacity: 0; pointer-events: none; }
+
+    .navbar-inner {
+      max-width: 1280px; height: var(--nav-h);
+      margin: 0 auto; padding: 0 5%;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 24px;
+    }
+    .logo { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+    .logo img { height: 68px; width: auto; }
+
+    .nav-links { display: flex; align-items: center; gap: 36px; }
+    .nav-links a {
+      position: relative; padding: 6px 0;
+      font-size: 16px; font-weight: 500; color: var(--text);
+      transition: color var(--ease);
+    }
+    .nav-links a::after {
+      content: ""; position: absolute; left: 0; bottom: 0;
+      width: 100%; height: 2px; background: var(--orange);
+      transform: scaleX(0); transform-origin: left;
+      transition: transform var(--ease);
+    }
+    .nav-links a:hover { color: var(--orange); }
+    .nav-links a:hover::after { transform: scaleX(1); }
+    .nav-links a.active { color: var(--orange); font-weight: 700; }
+    .nav-links a.active::after { transform: scaleX(1); }
+
+    .nav-actions { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+    .btn-book {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 24px;
+      background: var(--orange); color: var(--white);
+      font-family: inherit; font-size: 16px; font-weight: 600; line-height: 1;
+      white-space: nowrap; border: 0; border-radius: 12px; cursor: pointer;
+      transition: background var(--ease), transform var(--ease);
+    }
+    .btn-book .arrow { transition: transform var(--ease); }
+    .btn-book:hover { background: var(--maroon); }
+    .btn-book:hover .arrow { transform: translateX(4px); }
+
+    .hamburger {
+      display: none; width: 44px; height: 44px;
+      flex-direction: column; justify-content: center; align-items: center;
+      gap: 5px; cursor: pointer; border-radius: 10px;
+      transition: background var(--ease);
+    }
+    .hamburger:hover { background: var(--offwhite); }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--maroon); border-radius: 2px; }
+    .nav-toggle:focus-visible ~ .navbar-inner .hamburger { outline: 2px solid var(--orange); outline-offset: 2px; }
+
+    .mobile-menu {
+      position: fixed; top: 0; left: 0; width: 100%;
+      max-height: 100vh; overflow-y: auto;
+      background: var(--offwhite);
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 10px 30px rgba(43, 43, 43, 0.15);
+      transform: translateY(-100%); visibility: hidden;
+      transition: transform var(--ease), visibility var(--ease);
+      z-index: 1100;
+    }
+    .nav-toggle:checked ~ .mobile-menu { transform: translateY(0); visibility: visible; }
+    .mobile-menu-top {
+      display: flex; align-items: center; justify-content: space-between;
+      height: var(--nav-h); padding: 0 20px;
+      border-bottom: 1px solid var(--border);
+    }
+    .mobile-menu-top .logo img { height: 56px; }
+    .close-btn {
+      width: 44px; height: 44px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 32px; line-height: 1; color: var(--maroon);
+      cursor: pointer; border-radius: 10px;
+      transition: color var(--ease), background var(--ease);
+    }
+    .close-btn:hover { color: var(--orange); background: var(--white); }
+    .mobile-links a {
+      display: block; padding: 14px 20px;
+      font-size: 18px; font-weight: 500; color: var(--maroon);
+      border-bottom: 1px solid var(--border);
+      border-left: 4px solid transparent;
+      transition: color var(--ease), background var(--ease), border-color var(--ease);
+    }
+    .mobile-links a:hover { color: var(--orange); background: var(--white); }
+    .mobile-links a.active { color: var(--orange); font-weight: 700; border-left-color: var(--orange); }
+    .mobile-menu-bottom { padding: 24px 20px 28px; display: flex; flex-direction: column; gap: 18px; }
+    .mobile-menu-bottom .btn-book { width: 100%; justify-content: center; padding: 16px 24px; }
+    .mobile-phones {
+      display: flex; flex-wrap: wrap; justify-content: center;
+      gap: 6px 14px; color: var(--maroon); font-weight: 600; font-size: 16px;
+    }
+    .mobile-phones a { color: var(--maroon); transition: color var(--ease); }
+    .mobile-phones a:hover { color: var(--orange); }
+    .mobile-phones .sep { color: var(--border); }
+
+    @media (max-width: 1024px) {
+      .navbar-inner { gap: 16px; }
+      .logo img { height: 62px; }
+      .nav-links { gap: 20px; }
+      .nav-links a { font-size: 15px; }
+      .btn-book { padding: 10px 16px; font-size: 15px; }
+    }
+    @media (max-width: 767px) {
+      :root { --nav-h: 68px; }
+      .navbar-inner { padding: 0 16px; gap: 8px; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .logo img { height: 58px; }
+      .nav-actions .btn-book { padding: 9px 14px; font-size: 14px; border-radius: 10px; }
+    }
+    @media (min-width: 768px) { .mobile-menu { display: none; } }
+
+    /* =========================================================
+       SECTION 1 – BLOG HERO (cover + title)
+       ========================================================= */
+    .blog-hero { max-width: 1100px; margin: 0 auto; padding: 40px 5% 0; text-align: center; }
+
+    .breadcrumb { font-size: 13px; color: #8a8a8a; margin-bottom: 20px; }
+    .breadcrumb a { color: var(--orange); transition: opacity .3s; }
+    .breadcrumb a:hover { opacity: .7; }
+    .breadcrumb span { margin: 0 6px; }
+
+    .category-pill {
+      display: inline-block;
+      background: var(--light-orange);
+      color: var(--orange);
+      border-radius: 50px;
+      padding: 6px 16px;
+      font-size: 12px; font-weight: 700; letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .blog-hero h1 { font-size: 40px; font-weight: 800; line-height: 1.2; color: var(--maroon); margin: 16px auto; }
+    .blog-hero .lead { font-family: 'Inter', var(--font); font-size: 17px; line-height: 1.7; color: #666; max-width: 700px; margin: 0 auto; }
+
+    .author-meta { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 14px; margin: 22px 0 28px; }
+    .author-meta .avatar {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      object-fit: cover;
+      background: var(--border);
+      border: 2px solid var(--white);
+      box-shadow: 0 4px 12px rgba(43, 43, 43, .15);
+    }
+    .author-text { text-align: left; }
+    .author-text strong { display: block; font-size: 14px; font-weight: 700; color: var(--maroon); }
+    .author-text span { font-size: 13px; color: #777; }
+    .meta-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--border); }
+    .share-pill {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      padding: 7px 16px;
+      font-size: 13px; color: var(--maroon);
+      transition: border-color .3s, color .3s;
+    }
+    .share-pill:hover { border-color: var(--orange); color: var(--orange); }
+    .share-pill svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+    .cover-img {
+      width: 100%;
+      height: 480px;
+      object-fit: cover;
+      border-radius: 24px;
+      border: 1px solid var(--border);
+      background: var(--border);
+    }
+
+    /* =========================================================
+       SECTION 2 – ARTICLE + SIDEBAR
+       ========================================================= */
+    .article-wrap {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 36px 5% 60px;
+      display: grid;
+      grid-template-columns: 68fr 32fr;
+      gap: 40px;
+      align-items: start;
+    }
+
+    /* ---- Article (Medium-style reading column) ---- */
+    .article-content { max-width: 720px; font-family: 'Inter', var(--font); font-size: 17px; line-height: 1.85; color: var(--text); }
+    .article-content p { margin-bottom: 18px; }
+    .article-content strong { color: var(--maroon); }
+    .article-content h2 { font-family: var(--font); font-size: 26px; font-weight: 700; line-height: 1.3; color: var(--maroon); margin: 32px 0 12px; scroll-margin-top: 100px; }
+    .article-content h3 { font-family: var(--font); font-size: 20px; font-weight: 700; color: var(--maroon); margin: 24px 0 10px; }
+
+    .article-content ul,
+    .article-content ol { list-style: none; margin: 16px 0; display: flex; flex-direction: column; gap: 8px; font-size: 16px; counter-reset: item; }
+    .article-content ul li,
+    .article-content ol li { position: relative; padding-left: 26px; }
+    .article-content ul li::before { content: ""; position: absolute; left: 4px; top: .7em; width: 8px; height: 8px; border-radius: 50%; background: var(--orange); }
+    .article-content ol li { counter-increment: item; }
+    .article-content ol li::before { content: counter(item); position: absolute; left: 0; top: .15em; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: var(--orange); color: var(--white); font-size: 11px; font-weight: 700; }
+
+    .article-content blockquote {
+      border-left: 4px solid var(--orange);
+      background: var(--white);
+      padding: 20px 22px;
+      border-radius: 0 16px 16px 0;
+      font-family: var(--font);
+      font-size: 18px; font-style: italic; font-weight: 500;
+      line-height: 1.6;
+      color: var(--maroon);
+      margin: 24px 0;
+    }
+
+    .article-content figure { margin: 20px 0 8px; }
+    .article-content figure img { width: 100%; height: 320px; object-fit: cover; border-radius: 18px; background: var(--border); }
+    .article-content figcaption { font-size: 13px; font-style: italic; color: #777; text-align: center; margin-top: 8px; line-height: 1.5; }
+    .article-content figure { margin-bottom: 18px; }
+
+    /* Checklist box */
+    .checklist-box { background: var(--light-orange); border-radius: 16px; padding: 20px; margin: 24px 0; }
+    .checklist-box h3 { margin: 0 0 12px; font-size: 17px; }
+    .article-content .checklist-box ul { margin: 0; gap: 8px; font-size: 15px; }
+    .article-content .checklist-box ul li { padding-left: 28px; }
+    .article-content .checklist-box ul li::before {
+      content: "✓";
+      left: 0; top: .1em;
+      width: 20px; height: 20px;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--orange); color: var(--white);
+      font-size: 11px; font-weight: 700;
+    }
+
+    /* Mid-article CTA */
+    .callout-box { background: var(--gradient); border-radius: 20px; padding: 26px; text-align: center; margin: 28px 0; color: var(--white); }
+    .callout-box h3 { font-size: 20px; font-weight: 700; color: var(--white); margin: 0 0 8px; }
+    .callout-box p { font-size: 14px; color: rgba(255, 255, 255, .9); margin-bottom: 18px; line-height: 1.6; }
+    .callout-btn {
+      display: inline-block;
+      background: var(--white); color: var(--maroon);
+      padding: 12px 26px;
+      border-radius: 12px;
+      font-family: var(--font); font-weight: 700; font-size: 15px;
+      transition: transform .3s, box-shadow .3s;
+    }
+    .callout-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 22px rgba(0, 0, 0, .25); }
+
+    /* Tags */
+    .tags-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 32px; font-family: var(--font); font-size: 14px; }
+    .tags-row strong { color: var(--text); }
+    .tags-row a {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      padding: 6px 14px;
+      font-size: 13px; color: var(--maroon);
+      transition: border-color .3s, color .3s;
+    }
+    .tags-row a:hover { border-color: var(--orange); color: var(--orange); }
+
+    /* Share + helpful row */
+    .share-row {
+      display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px;
+      border-top: 1px solid var(--border);
+      padding-top: 20px;
+      margin-top: 24px;
+      font-family: var(--font);
+      font-size: 14px;
+    }
+    .share-left, .share-right { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .share-left strong, .share-right strong { font-weight: 600; color: var(--text); }
+    .share-btn {
+      width: 38px; height: 38px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 50%;
+      border: 0;
+      cursor: pointer;
+      color: var(--white);
+      transition: transform .3s, box-shadow .3s;
+    }
+    .share-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 18px rgba(43, 43, 43, .2); }
+    .share-btn svg { width: 18px; height: 18px; fill: currentColor; }
+    .share-btn.wa { background: #25D366; }
+    .share-btn.fb { background: var(--maroon); }
+    .share-btn.copy { background: var(--orange); }
+
+    .helpful-btn {
+      font-family: var(--font);
+      font-size: 13px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      padding: 7px 16px;
+      color: var(--maroon);
+      cursor: pointer;
+      transition: border-color .3s, background .3s, color .3s;
+    }
+    .helpful-btn:hover,
+    .helpful-btn.chosen { border-color: var(--orange); background: var(--light-orange); color: var(--orange); }
+
+    /* ---- Sidebar (sticky on desktop) ---- */
+    .blog-sidebar {
+      position: sticky;
+      top: 100px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      max-height: calc(100vh - 120px);   /* stays reachable if taller than the screen */
+      overflow-y: auto;
+      scrollbar-width: none;
+    }
+    .blog-sidebar::-webkit-scrollbar { display: none; }
+
+    .side-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 22px;
+    }
+    .side-title { font-size: 15px; font-weight: 700; color: var(--maroon); margin-bottom: 12px; }
+
+    /* TOC (a <details>: always open on desktop/tablet, collapsible on mobile) */
+    .toc-card summary { list-style: none; font-size: 15px; font-weight: 700; color: var(--maroon); pointer-events: none; display: flex; justify-content: space-between; align-items: center; }
+    .toc-card summary::-webkit-details-marker { display: none; }
+    .toc-card summary::after { content: none; }
+    .toc-card ul { list-style: none; margin-top: 12px; }
+    .toc-card a {
+      display: block;
+      padding: 8px 10px;
+      font-size: 14px; color: #666;
+      border-left: 2px solid transparent;
+      transition: color .3s, background .3s, border-color .3s;
+    }
+    .toc-card a:hover { color: var(--orange); }
+    .toc-card a.active { color: var(--maroon); font-weight: 700; border-left-color: var(--orange); background: var(--light-orange); }
+
+    /* Author card */
+    .author-card { text-align: center; }
+    .author-card .avatar-lg { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; margin: 0 auto 10px; background: var(--border); }
+    .author-card h4 { font-size: 16px; font-weight: 700; color: var(--maroon); }
+    .author-card .role { font-size: 13px; color: #777; margin-bottom: 8px; }
+    .author-card .bio { font-family: 'Inter', var(--font); font-size: 13.5px; line-height: 1.6; color: #666; margin-bottom: 14px; }
+    .btn-outline-orange {
+      display: inline-block;
+      border: 2px solid var(--orange);
+      color: var(--orange);
+      border-radius: 12px;
+      padding: 9px 18px;
+      font-size: 14px; font-weight: 700;
+      transition: background .3s, color .3s;
+    }
+    .btn-outline-orange:hover { background: var(--orange); color: var(--white); }
+
+    /* Booking card */
+    .booking-card { background: var(--gradient); border: 0; text-align: center; color: var(--white); }
+    .booking-card h4 { font-size: 18px; font-weight: 700; margin-bottom: 6px; }
+    .booking-card p { font-size: 13.5px; color: rgba(255, 255, 255, .9); margin-bottom: 16px; }
+    .booking-card .btn-white {
+      display: block;
+      background: var(--white); color: var(--maroon);
+      padding: 12px;
+      border-radius: 12px;
+      font-weight: 700; font-size: 15px;
+      transition: transform .3s, box-shadow .3s;
+    }
+    .booking-card .btn-white:hover { transform: translateY(-3px); box-shadow: 0 10px 22px rgba(0, 0, 0, .25); }
+    .booking-card small { display: block; margin-top: 10px; font-size: 12px; color: rgba(255, 255, 255, .8); }
+
+    /* Popular posts */
+    .popular-list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+    .popular-list a { display: flex; gap: 12px; align-items: center; }
+    .popular-list img { width: 64px; height: 64px; flex-shrink: 0; object-fit: cover; border-radius: 12px; background: var(--border); }
+    .popular-list strong {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      font-size: 13.5px; line-height: 1.4; color: var(--maroon);
+      transition: color .3s;
+    }
+    .popular-list a:hover strong { color: var(--orange); }
+    .popular-list span { font-size: 12px; color: #777; }
+
+    /* =========================================================
+       RESPONSIVE
+       ========================================================= */
+
+    /* Tablet (768px – 1024px): one column, TOC becomes horizontal pills above the article */
+    @media (max-width: 1024px) {
+      .blog-hero h1 { font-size: 34px; }
+      .cover-img { height: 360px; }
+
+      .article-wrap { grid-template-columns: 1fr; gap: 28px; }
+      .article-content { max-width: none; }
+
+      /* Sidebar's children become grid items so the TOC can jump above the article */
+      .blog-sidebar { display: contents; }
+      .toc-card { order: -1; padding: 14px 16px; }
+      .article-content { order: 0; }
+      .author-card, .booking-card, .popular-card { order: 1; }
+
+      .toc-card summary { margin-bottom: 4px; }
+      .toc-card ul { display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; margin-top: 8px; padding-bottom: 2px; }
+      .toc-card ul::-webkit-scrollbar { display: none; }
+      .toc-card a {
+        white-space: nowrap;
+        border: 1px solid var(--border);
+        border-radius: 50px;
+        padding: 7px 14px;
+        font-size: 13px;
+      }
+      .toc-card a.active { border-color: var(--orange); }
+    }
+
+    /* Mobile (below 768px) */
+    @media (max-width: 767px) {
+      .blog-hero { padding: 30px 20px 0; }
+      .blog-hero h1 { font-size: 28px; }
+      .blog-hero .lead { font-size: 15px; }
+      .cover-img { height: 240px; border-radius: 18px; }
+
+      .article-wrap { padding: 24px 20px; }
+      .article-content { font-size: 16px; }
+      .article-content h2 { font-size: 22px; }
+      .article-content h3 { font-size: 18px; }
+      .article-content figure img { height: 220px; }
+      .article-content blockquote { font-size: 16px; padding: 16px 18px; }
+
+      /* TOC turns into a collapsible dropdown */
+      .toc-card summary { pointer-events: auto; cursor: pointer; margin-bottom: 0; }
+      .toc-card summary::after { content: "+"; font-size: 20px; line-height: 1; color: var(--orange); }
+      .toc-card[open] summary::after { content: "−"; }
+      .toc-card ul { display: block; overflow: visible; margin-top: 10px; }
+      .toc-card a { border: 0; border-left: 2px solid transparent; border-radius: 0; padding: 8px 10px; font-size: 14px; white-space: normal; }
+
+      .share-row { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =========================================================
+       SECTION 0 – READING PROGRESS BAR
+       ========================================================= -->
+  <div class="progress-bar" role="progressbar" aria-label="Reading progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+    <div class="progress-fill" id="progress-fill"></div>
+  </div>
+
+  <!-- =========================================================
+       NAVBAR
+       ========================================================= -->
+  <header class="navbar" id="navbar">
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Toggle menu">
+
+    <div class="navbar-inner">
+      <a href="home.html" class="logo" aria-label="Studio Four Media Works – Home">
+        <img src="images/Studio_Four_Logo%20(1).png" alt="Studio Four Media Works">
+      </a>
+
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="home.html">Home</a>
+        <a href="work.html">Work</a>
+        <a href="services.html">Services</a>
+        <a href="about.html">About</a>
+        <a href="blogs.html" class="active" aria-current="page">Blog</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="contact.html" class="btn-book">Book Now <span class="arrow">&rarr;</span></a>
+        <label for="nav-toggle" class="hamburger" aria-label="Open menu">
+          <span></span><span></span><span></span>
+        </label>
+      </div>
+    </div>
+
+    <div class="mobile-menu">
+      <div class="mobile-menu-top">
+        <a href="home.html" class="logo" aria-label="Studio Four Media Works – Home">
+          <img src="images/Studio_Four_Logo%20(1).png" alt="Studio Four Media Works">
+        </a>
+        <label for="nav-toggle" class="close-btn" aria-label="Close menu">&times;</label>
+      </div>
+
+      <nav class="mobile-links" aria-label="Mobile navigation">
+        <a href="home.html">Home</a>
+        <a href="work.html">Work</a>
+        <a href="services.html">Services</a>
+        <a href="about.html">About</a>
+        <a href="blogs.html" class="active" aria-current="page">Blog</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+
+      <div class="mobile-menu-bottom">
+        <a href="contact.html" class="btn-book">Book Now <span class="arrow">&rarr;</span></a>
+        <div class="mobile-phones">
+          <a href="tel:+919074371711">90743 71711</a><span class="sep">|</span>
+          <a href="tel:+916238371711">62383 71711</a><span class="sep">|</span>
+          <a href="tel:+919567171711">95671 71711</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- =========================================================
+       SECTION 1 – BLOG HERO
+       ========================================================= -->
+  <header class="blog-hero">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="home.html">Home</a><span>/</span><a href="blogs.html">Blog</a><span>/</span>Graduation
+    </nav>
+
+    <span class="category-pill">Graduation Tips</span>
+
+    <h1>7 Graduation Photo Poses Every School Should Try in 2026</h1>
+    <p class="lead">From classic group shots to fun drone poses - these 7 ideas will make your album unforgettable.</p>
+
+    <div class="author-meta">
+      <img class="avatar" src="images/person.svg" alt="Studio Four Team">
+      <div class="author-text">
+        <strong>By Studio Four Team</strong>
+        <span>Nov 4, 2026 • 6 min read</span>
+      </div>
+      <span class="meta-dot" aria-hidden="true"></span>
+      <a href="#share" class="share-pill">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.600 13.500l6.800 4M15.400 6.500l-6.800 4"/></svg>
+        Share
+      </a>
+    </div>
+
+    <img class="cover-img" src="images/blog-graduation-cover.jpg" alt="Students tossing graduation caps in the air">
+  </header>
+
+  <!-- =========================================================
+       SECTION 2 – ARTICLE + SIDEBAR
+       ========================================================= -->
+  <div class="article-wrap">
+
+    <!-- LEFT: article -->
+    <article class="article-content" id="article">
+
+      <p>A graduation album lives for decades, and the poses are what people remember. We have shot over 200 school events across Kerala, and these <strong>seven poses</strong> work every single time.</p>
+      <p>Whether you are a principal planning the shoot or a teacher helping students line up, use this list as your shoot-day cheat sheet.</p>
+
+      <h2 id="pose-1">1. The Classic Cap Toss</h2>
+      <p>Nothing says graduation like caps flying into the air. It is simple, joyful and looks great in every album. The secret is timing: ask students to toss on the count of three, and shoot a burst so you capture the caps at their highest point.</p>
+      <p>Do it two or three times. The first toss is usually early or late, the second is where the <strong>magic frame</strong> appears.</p>
+
+      <figure>
+        <img src="images/blog-pose-1.jpg" alt="Students tossing graduation caps">
+        <figcaption>Classic cap toss - our most loved pose</figcaption>
+      </figure>
+
+      <h2 id="pose-2">2. The Walking Shot</h2>
+      <p>Have the batch walk toward the camera in a relaxed line, as if heading out of school for the last time. It feels natural and tells a story rather than a pose.</p>
+      <ul>
+        <li>Keep the group in a loose V-shape so every face is visible.</li>
+        <li>Shoot slightly low, so gowns and the school building fill the frame.</li>
+        <li>Ask students to chat with each other - real smiles beat forced ones.</li>
+      </ul>
+
+      <h2 id="pose-3">3. The Group Jump</h2>
+      <p>Energy sells. A synchronised group jump gives the album a burst of fun and works especially well for Class 10 and Class 12 batches, where students want something more playful than a formal line-up.</p>
+      <blockquote>A great graduation photo is not about the pose. It's about the memory behind it.</blockquote>
+
+      <h2 id="pose-4">4. The Candid Laugh</h2>
+      <p>Tell a harmless joke, or ask the group to say the silliest nickname they remember from school. The genuine laugh that follows is often the photo parents love most, because it looks exactly like their child.</p>
+
+      <h2 id="pose-5">5. The Teacher Tribute</h2>
+      <p>Students around their favourite teacher - this is the photo that makes teachers cry happy tears. Plan it ahead so every teacher is included, and let students choose the pose together.</p>
+
+      <div class="checklist-box">
+        <h3>Quick Checklist Before Shoot Day</h3>
+        <ul>
+          <li>Confirm the batch list and the shoot schedule with class teachers.</li>
+          <li>Pick two backup locations in case of rain or harsh sun.</li>
+          <li>Ask students to bring caps, gowns and school ties neatly pressed.</li>
+          <li>Keep water and a short break ready for the little ones.</li>
+        </ul>
+      </div>
+
+      <h2 id="pose-6">6. The Drone Top Shot</h2>
+      <p>Students spell out the school's initials or form a big smile shape on the ground while a licensed pilot captures them from above. It is the most shared photo of any batch, and parents love it on social media.</p>
+
+      <figure>
+        <img src="images/blog-pose-6.jpg" alt="Aerial drone view of students forming a shape on the school ground">
+        <figcaption>A drone top shot turns the whole batch into one picture</figcaption>
+      </figure>
+
+      <h2 id="pose-7">7. The Future Me Pose</h2>
+      <p>Ask each student to hold a card or pose as the profession they dream of - doctor, pilot, teacher, engineer. It is cute today and priceless in ten years, when they look back at what they wanted to become.</p>
+
+      <div class="callout-box">
+        <h3>Want These Poses For Your School?</h3>
+        <p>Book a free consultation - we bring samples to your school.</p>
+        <a href="contact.html" class="callout-btn">Book Free Shoot →</a>
+      </div>
+
+      <h2 id="conclusion">Final Thoughts</h2>
+      <p>You do not need all seven poses - even three or four will make your graduation album stand out. Pick the ones that fit your students, plan the timing, and let the photographers handle the rest. The best albums are the ones where students look like themselves.</p>
+
+      <!-- Tags -->
+      <div class="tags-row">
+        <strong>Tags:</strong>
+        <a href="blogs.html">Graduation</a>
+        <a href="blogs.html">Photography Tips</a>
+        <a href="blogs.html">School Events</a>
+      </div>
+
+      <!-- Share + helpful -->
+      <div class="share-row" id="share">
+        <div class="share-left">
+          <strong>Share this article:</strong>
+          <!-- Share links use the planned article address; update it to the live URL when the blog is published -->
+          <a class="share-btn wa" href="https://wa.me/?text=7%20Graduation%20Photo%20Poses%20Every%20School%20Should%20Try%20in%202026%20https%3A%2F%2Fstudiofour.in%2Fblog%2Fgraduation-photo-poses" target="_blank" rel="noopener" aria-label="Share on WhatsApp">
+            <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1-.7-.3-1.5-.8-2.1-1.4-.5-.5-.9-1-1.200-1.600-.1-.2 0-.4.1-.5l.4-.4.2-.4v-.4l-.8-1.800c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.6.3-.6.6-.9 1.300-.9 2.100.1 1 .5 1.900 1.100 2.700 1.100 1.600 2.500 2.800 4.200 3.500.5.2 1 .4 1.500.4.7 0 1.500-.5 1.800-1.100.1-.3.1-.6.1-.8l-.5-.3z"/></svg>
+          </a>
+          <a class="share-btn fb" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fstudiofour.in%2Fblog%2Fgraduation-photo-poses" target="_blank" rel="noopener" aria-label="Share on Facebook">
+            <svg viewBox="0 0 24 24"><path d="M14 8V6.500c0-.7.2-1.100 1.200-1.100H17V2.200C16.600 2.100 15.600 2 14.500 2 12 2 10.400 3.500 10.400 6v2H8v3.400h2.400V22H14V11.400h2.600L17 8h-3z"/></svg>
+          </a>
+          <button type="button" class="share-btn copy" id="copy-link" aria-label="Copy link">
+            <svg viewBox="0 0 24 24"><path d="M10.600 13.400a4 4 0 0 0 5.700 0l3-3a4 4 0 0 0-5.700-5.700l-1.100 1.100 1.400 1.400 1.100-1.100a2 2 0 0 1 2.900 2.900l-3 3a2 2 0 0 1-2.900 0l-1.400 1.400zM13.400 10.600a4 4 0 0 0-5.700 0l-3 3a4 4 0 0 0 5.700 5.700l1.100-1.100-1.400-1.400-1.100 1.100a2 2 0 0 1-2.900-2.900l3-3a2 2 0 0 1 2.900 0l1.400-1.400z"/></svg>
+          </button>
+        </div>
+
+        <div class="share-right">
+          <strong id="helpful-label">Was this helpful?</strong>
+          <button type="button" class="helpful-btn" data-vote="yes">👍 Yes</button>
+          <button type="button" class="helpful-btn" data-vote="no">👎 No</button>
+        </div>
+      </div>
+
+    </article>
+
+    <!-- RIGHT: sidebar -->
+    <aside class="blog-sidebar" aria-label="Article sidebar">
+
+      <!-- 1. Table of contents -->
+      <details class="side-card toc-card" id="toc" open>
+        <summary>In This Article</summary>
+        <ul>
+          <li><a href="#pose-1">1. The Classic Cap Toss</a></li>
+          <li><a href="#pose-2">2. The Walking Shot</a></li>
+          <li><a href="#pose-3">3. The Group Jump</a></li>
+          <li><a href="#pose-4">4. The Candid Laugh</a></li>
+          <li><a href="#pose-5">5. The Teacher Tribute</a></li>
+          <li><a href="#pose-6">6. The Drone Top Shot</a></li>
+          <li><a href="#pose-7">7. The Future Me Pose</a></li>
+          <li><a href="#conclusion">Final Thoughts</a></li>
+        </ul>
+      </details>
+
+      <!-- 2. Author -->
+      <div class="side-card author-card">
+        <img class="avatar-lg" src="images/person.svg" alt="Studio Four Team">
+        <h4>Studio Four Team</h4>
+        <p class="role">Photography Team, Palakkad</p>
+        <p class="bio">We have shot 200+ school events across Kerala.</p>
+        <a href="blogs.html" class="btn-outline-orange">View All Articles →</a>
+      </div>
+
+      <!-- 3. Booking -->
+      <div class="side-card booking-card">
+        <h4>Book Your Graduation Shoot</h4>
+        <p>Free school visit + samples</p>
+        <a href="contact.html" class="btn-white">Get Free Quote</a>
+        <small>No advance needed</small>
+      </div>
+
+      <!-- 4. Popular posts -->
+      <div class="side-card popular-card">
+        <h4 class="side-title">Popular Posts</h4>
+        <ul class="popular-list">
+          <li>
+            <a href="blogs.html">
+              <img src="images/blog-thumb-1.jpg" alt="">
+              <div><strong>ID Card Design Ideas for 2026</strong><span>Oct 28, 2026</span></div>
+            </a>
+          </li>
+          <li>
+            <a href="blogs.html">
+              <img src="images/blog-thumb-2.jpg" alt="">
+              <div><strong>How to Plan Annual Day Coverage</strong><span>Oct 15, 2026</span></div>
+            </a>
+          </li>
+          <li>
+            <a href="blogs.html">
+              <img src="images/blog-thumb-3.jpg" alt="">
+              <div><strong>Drone Shots That Wow Parents</strong><span>Oct 2, 2026</span></div>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+    </aside>
+  </div>
+
+  <!-- Navbar: shadow on scroll + close mobile menu when a link is tapped -->
+  <script>
+    (function () {
+      var navbar = document.getElementById('navbar');
+      var toggle = document.getElementById('nav-toggle');
+      function onScroll() { navbar.classList.toggle('scrolled', window.scrollY > 4); }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+      document.querySelectorAll('.mobile-menu a').forEach(function (a) {
+        a.addEventListener('click', function () { toggle.checked = false; });
+      });
+    })();
+  </script>
+
+  <!-- Reading progress bar + table-of-contents highlight -->
+  <script>
+    (function () {
+      var article = document.getElementById('article');
+      var fill = document.getElementById('progress-fill');
+      var bar = fill.parentNode;
+      var toc = document.getElementById('toc');
+      var tocLinks = Array.prototype.slice.call(toc.querySelectorAll('a'));
+      var headings = tocLinks.map(function (a) { return document.getElementById(a.getAttribute('href').slice(1)); });
+      var ticking = false;
+
+      // Mobile: TOC starts collapsed (it stays open without JS and on larger screens)
+      var mobile = window.matchMedia('(max-width: 767px)');
+      function syncToc() { toc.open = !mobile.matches; }
+      syncToc();
+      if (mobile.addEventListener) mobile.addEventListener('change', syncToc);
+
+      function update() {
+        ticking = false;
+
+        // 1. Progress: 0% at the top of the article, 100% when its end reaches the bottom of the screen
+        var top = article.getBoundingClientRect().top + window.scrollY;
+        var total = article.offsetHeight - window.innerHeight * 0.5;
+        var pct = Math.min(100, Math.max(0, ((window.scrollY - top + window.innerHeight * 0.3) / total) * 100));
+        fill.style.width = pct + '%';
+        bar.setAttribute('aria-valuenow', Math.round(pct));
+
+        // 2. TOC: highlight the last heading that has scrolled past the top offset
+        var current = -1;
+        headings.forEach(function (h, i) {
+          if (h && h.getBoundingClientRect().top <= 140) current = i;
+        });
+        tocLinks.forEach(function (a, i) {
+          var on = i === current;
+          if (on === a.classList.contains('active')) return;
+          a.classList.toggle('active', on);
+          // Tablet pills: keep the active pill in view horizontally
+          if (on) {
+            var list = a.closest('ul');
+            if (list && list.scrollWidth > list.clientWidth) {
+              list.scrollTo({ left: a.offsetLeft - list.clientWidth / 2 + a.offsetWidth / 2, behavior: 'smooth' });
+            }
+          }
+        });
+      }
+
+      function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onScroll);
+      update();
+
+      // Mobile: close the dropdown after choosing a section
+      tocLinks.forEach(function (a) {
+        a.addEventListener('click', function () { if (mobile.matches) toc.open = false; });
+      });
+    })();
+  </script>
+
+  <!-- Small extras: copy-link button + "was this helpful?" feedback -->
+  <script>
+    (function () {
+      var copy = document.getElementById('copy-link');
+      if (copy) {
+        copy.addEventListener('click', function () {
+          var url = window.location.href;
+          if (navigator.clipboard) {
+            navigator.clipboard.writeText(url).then(function () {
+              copy.setAttribute('aria-label', 'Link copied');
+              copy.style.background = '#7A0C1A';
+              setTimeout(function () { copy.style.background = ''; copy.setAttribute('aria-label', 'Copy link'); }, 1500);
+            });
+          }
+        });
+      }
+
+      var label = document.getElementById('helpful-label');
+      var votes = document.querySelectorAll('.helpful-btn');
+      votes.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          votes.forEach(function (b) { b.classList.toggle('chosen', b === btn); });
+          label.textContent = 'Thanks for your feedback!';
+        });
+      });
+    })();
+  </script>
+
+</body>
+</html>

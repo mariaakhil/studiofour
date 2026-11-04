@@ -1,0 +1,1695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us | Studio Four Media Works</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* =========================================================
+       DESIGN TOKENS – Studio Four brand colours only
+       ========================================================= */
+    :root {
+      --orange: #E94E1B;
+      --maroon: #7A0C1A;
+      --offwhite: #FFF9F5;
+      --white: #FFFFFF;
+      --text: #2B2B2B;
+      --border: #EDE6E0;
+      --gradient: linear-gradient(135deg, #7A0C1A, #E94E1B);
+      --font: 'Poppins', 'Inter', system-ui, sans-serif;
+      --nav-h: 76px;
+      --ease: 0.3s ease;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font);
+      color: var(--text);
+      background: var(--white);
+      padding-top: var(--nav-h); /* room for the fixed navbar */
+      overflow-x: hidden; /* no horizontal scroll */
+    }
+
+    /* Lock page scroll while the mobile menu is open */
+    body:has(.nav-toggle:checked) { overflow: hidden; }
+
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; }
+
+    /* Shared pill label */
+    .pill {
+      display: inline-block;
+      background: var(--white);
+      color: var(--orange);
+      border: 1px solid var(--orange);
+      border-radius: 50px;
+      padding: 7px 16px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    /* =========================================================
+       NAVBAR (same as home page)
+       ========================================================= */
+    .navbar {
+      position: fixed; top: 0; left: 0; width: 100%;
+      z-index: 1000;
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      transition: box-shadow var(--ease);
+    }
+    .navbar.scrolled { box-shadow: 0 4px 18px rgba(43, 43, 43, 0.10); }
+
+    /* Hidden checkbox driving the mobile menu (CSS-only toggle) */
+    .nav-toggle { position: absolute; opacity: 0; pointer-events: none; }
+
+    .navbar-inner {
+      max-width: 1280px;
+      height: var(--nav-h);
+      margin: 0 auto;
+      padding: 0 5%;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 24px;
+    }
+
+    .logo { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+    .logo img { height: 68px; width: auto; }
+
+    .nav-links { display: flex; align-items: center; gap: 36px; }
+    .nav-links a {
+      position: relative;
+      padding: 6px 0;
+      font-size: 16px; font-weight: 500;
+      color: var(--text);
+      transition: color var(--ease);
+    }
+    .nav-links a::after {
+      content: "";
+      position: absolute; left: 0; bottom: 0;
+      width: 100%; height: 2px;
+      background: var(--orange);
+      transform: scaleX(0); transform-origin: left;
+      transition: transform var(--ease);
+    }
+    .nav-links a:hover { color: var(--orange); }
+    .nav-links a:hover::after { transform: scaleX(1); }
+    .nav-links a.active { color: var(--orange); font-weight: 700; }
+    .nav-links a.active::after { transform: scaleX(1); }
+
+    .nav-actions { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+
+    .btn-book {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 24px;
+      background: var(--orange); color: var(--white);
+      font-family: inherit; font-size: 16px; font-weight: 600; line-height: 1;
+      white-space: nowrap;
+      border: 0; border-radius: 12px; cursor: pointer;
+      transition: background var(--ease), transform var(--ease);
+    }
+    .btn-book .arrow { transition: transform var(--ease); }
+    .btn-book:hover { background: var(--maroon); }
+    .btn-book:hover .arrow { transform: translateX(4px); }
+
+    /* Hamburger – hidden on desktop */
+    .hamburger {
+      display: none;
+      width: 44px; height: 44px;
+      flex-direction: column; justify-content: center; align-items: center;
+      gap: 5px; cursor: pointer; border-radius: 10px;
+      transition: background var(--ease);
+    }
+    .hamburger:hover { background: var(--offwhite); }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--maroon); border-radius: 2px; }
+    .nav-toggle:focus-visible ~ .navbar-inner .hamburger { outline: 2px solid var(--orange); outline-offset: 2px; }
+
+    /* Mobile slide-down menu */
+    .mobile-menu {
+      position: fixed; top: 0; left: 0; width: 100%;
+      max-height: 100vh; overflow-y: auto;
+      background: var(--offwhite);
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 10px 30px rgba(43, 43, 43, 0.15);
+      transform: translateY(-100%); visibility: hidden;
+      transition: transform var(--ease), visibility var(--ease);
+      z-index: 1100;
+    }
+    .nav-toggle:checked ~ .mobile-menu { transform: translateY(0); visibility: visible; }
+
+    .mobile-menu-top {
+      display: flex; align-items: center; justify-content: space-between;
+      height: var(--nav-h); padding: 0 20px;
+      border-bottom: 1px solid var(--border);
+    }
+    .mobile-menu-top .logo img { height: 56px; }
+
+    .close-btn {
+      width: 44px; height: 44px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 32px; line-height: 1; color: var(--maroon);
+      cursor: pointer; border-radius: 10px;
+      transition: color var(--ease), background var(--ease);
+    }
+    .close-btn:hover { color: var(--orange); background: var(--white); }
+
+    .mobile-links a {
+      display: block;
+      padding: 14px 20px;
+      font-size: 18px; font-weight: 500; color: var(--maroon);
+      border-bottom: 1px solid var(--border);
+      border-left: 4px solid transparent;
+      transition: color var(--ease), background var(--ease), border-color var(--ease);
+    }
+    .mobile-links a:hover { color: var(--orange); background: var(--white); }
+    .mobile-links a.active { color: var(--orange); font-weight: 700; border-left-color: var(--orange); }
+
+    .mobile-menu-bottom { padding: 24px 20px 28px; display: flex; flex-direction: column; gap: 18px; }
+    .mobile-menu-bottom .btn-book { width: 100%; justify-content: center; padding: 16px 24px; }
+
+    .mobile-phones {
+      display: flex; flex-wrap: wrap; justify-content: center;
+      gap: 6px 14px; color: var(--maroon); font-weight: 600; font-size: 16px;
+    }
+    .mobile-phones a { color: var(--maroon); transition: color var(--ease); }
+    .mobile-phones a:hover { color: var(--orange); }
+    .mobile-phones .sep { color: var(--border); }
+
+    /* Navbar responsive */
+    @media (max-width: 1024px) {
+      .navbar-inner { gap: 16px; }
+      .logo img { height: 62px; }
+      .nav-links { gap: 20px; }
+      .nav-links a { font-size: 15px; }
+      .btn-book { padding: 10px 16px; font-size: 15px; }
+    }
+    @media (max-width: 767px) {
+      :root { --nav-h: 68px; }
+      .navbar-inner { padding: 0 16px; gap: 8px; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .logo img { height: 58px; }
+      .nav-actions .btn-book { padding: 9px 14px; font-size: 14px; border-radius: 10px; }
+    }
+    @media (min-width: 768px) {
+      .mobile-menu { display: none; }
+    }
+
+    /* =========================================================
+       PAGE BANNER
+       ========================================================= */
+    .page-banner {
+      position: relative;
+      background: var(--gradient);
+      color: var(--white);
+      text-align: center;
+      overflow: hidden;
+    }
+    /* Soft decorative circles */
+    .page-banner::before,
+    .page-banner::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      background: var(--white);
+      opacity: .08;
+    }
+    .page-banner::before { width: 320px; height: 320px; top: -140px; left: -80px; }
+    .page-banner::after  { width: 240px; height: 240px; bottom: -120px; right: 6%; }
+
+    .banner-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 64px 5%;
+    }
+
+    .breadcrumb { font-size: 13px; color: rgba(255, 255, 255, .8); margin-bottom: 16px; }
+    .breadcrumb a { color: var(--white); font-weight: 600; transition: opacity .3s; }
+    .breadcrumb a:hover { opacity: .7; }
+    .breadcrumb span { margin: 0 8px; }
+
+    .banner-title { font-size: 48px; font-weight: 800; line-height: 1.15; margin-bottom: 12px; }
+    .banner-sub {
+      font-family: 'Inter', var(--font);
+      font-size: 17px;
+      line-height: 1.6;
+      max-width: 560px;
+      margin: 0 auto;
+      color: rgba(255, 255, 255, .9);
+    }
+
+    @media (max-width: 1024px) { .banner-title { font-size: 40px; } }
+    @media (max-width: 767px) {
+      .banner-inner { padding: 44px 20px; }
+      .banner-title { font-size: 32px; }
+      .banner-sub { font-size: 15px; }
+    }
+
+    /* =========================================================
+       SECTION 1 – ABOUT HERO
+       ========================================================= */
+    .about-hero {
+      background: var(--offwhite);
+      overflow: hidden;
+    }
+
+    .about-hero-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 80px 5% 60px;
+    }
+
+
+    /* 2-column grid */
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    /* ---- Left: text ---- */
+    .hero-text .pill { margin-bottom: 20px; }
+
+    .hero-text h1 {
+      font-size: 44px;
+      font-weight: 800;
+      line-height: 1.15;
+      color: var(--text);
+      margin-bottom: 20px;
+    }
+
+    /* Gradient highlight word */
+    .gradient-text {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-text p {
+      font-family: 'Inter', var(--font);
+      font-size: 17px;
+      line-height: 1.7;
+      color: #555;
+      margin-bottom: 28px;
+      max-width: 540px;
+    }
+
+    /* Buttons */
+    .hero-buttons { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 32px; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 28px;
+      border-radius: 50px;
+      font-family: var(--font);
+      font-size: 15px;
+      font-weight: 600;
+      border: 2px solid transparent;
+      transition: transform .3s, box-shadow .3s, background .3s, color .3s;
+    }
+    .btn:hover { transform: translateY(-3px); }
+
+    .btn-primary { background: var(--orange); color: var(--white); box-shadow: 0 8px 20px rgba(233, 78, 27, .28); }
+    .btn-primary:hover { box-shadow: 0 12px 26px rgba(233, 78, 27, .38); }
+
+    .btn-outline { background: var(--white); color: var(--maroon); border-color: var(--maroon); }
+    .btn-outline:hover { background: var(--maroon); color: var(--white); }
+
+    /* Trust row */
+    .trust-row { display: flex; align-items: center; gap: 14px; }
+
+    .avatars { display: flex; }
+    .avatars img {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      object-fit: cover;
+      background: var(--border);
+      border: 3px solid var(--offwhite);
+      margin-left: -12px;
+    }
+    .avatars img:first-child { margin-left: 0; }
+
+    .trust-text strong { display: block; font-size: 14px; font-weight: 600; color: var(--text); }
+    .stars { color: var(--orange); font-size: 14px; letter-spacing: 2px; }
+
+    /* ---- Right: image collage ---- */
+    .hero-collage {
+      position: relative;
+      isolation: isolate;          /* keeps the z-index:-1 blob inside the collage */
+    }
+
+    .hero-collage > img {
+      width: 100%;
+      height: 420px;
+      object-fit: cover;
+      border-radius: 28px;
+      background: var(--border);
+      box-shadow: 0 24px 50px rgba(122, 12, 26, .15);
+    }
+
+    /* Orange blob behind image */
+    .collage-blob {
+      position: absolute;
+      z-index: -1;
+      width: 200px; height: 200px;
+      right: -40px; bottom: -40px;
+      background: var(--orange);
+      opacity: .25;
+      border-radius: 63% 37% 54% 46% / 55% 48% 52% 45%;
+    }
+
+    /* Floating cards */
+    .floating-card {
+      position: absolute;
+      border-radius: 16px;
+      padding: 14px 18px;
+      animation: float 3s ease-in-out infinite;
+      transition: box-shadow .3s;
+    }
+
+    .floating-card strong { display: block; font-size: 15px; font-weight: 700; }
+    .floating-card small { font-size: 12px; }
+
+    .card-stat {
+      top: 24px; left: -24px;
+      background: rgba(255, 255, 255, .75);
+      -webkit-backdrop-filter: blur(12px);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, .8);
+      box-shadow: 0 12px 30px rgba(43, 43, 43, .15);
+    }
+    .card-stat strong { color: var(--maroon); }
+    .card-stat small { color: #777; }
+
+    .card-award {
+      bottom: 24px; right: -16px;
+      max-width: 230px;
+      background: var(--orange);
+      color: var(--white);
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 1.4;
+      box-shadow: 0 12px 30px rgba(233, 78, 27, .35);
+      animation-delay: 1.2s;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50%      { transform: translateY(-10px); }
+    }
+
+    /* =========================================================
+       SECTION 2 – OUR STORY TIMELINE
+       ========================================================= */
+    .our-story {
+      background: var(--white);
+      padding: 70px 5%;
+      overflow: hidden;
+    }
+
+    .story-header { text-align: center; max-width: 600px; margin: 0 auto 56px; }
+    .story-header h2 { font-size: 36px; font-weight: 700; color: var(--maroon); margin: 16px 0 8px; }
+    .story-header p { font-family: 'Inter', var(--font); font-size: 16px; color: #555; }
+
+    .story-timeline {
+      position: relative;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    /* Vertical centre line */
+    .story-timeline::before {
+      content: "";
+      position: absolute;
+      top: 0; bottom: 0; left: 50%;
+      width: 2px;
+      transform: translateX(-50%);
+      background: linear-gradient(to bottom, rgba(122, 12, 26, .08), rgba(122, 12, 26, .3), rgba(122, 12, 26, .08));
+    }
+
+    .timeline-item {
+      position: relative;
+      width: 50%;
+      padding: 0 44px 40px 0;      /* odd items sit on the left */
+    }
+    .timeline-item:last-child { padding-bottom: 0; }
+    .timeline-item:nth-child(even) {
+      margin-left: 50%;            /* even items sit on the right */
+      padding: 0 0 40px 44px;
+    }
+    .timeline-item:nth-child(even):last-child { padding-bottom: 0; }
+
+    /* Orange dot on the line */
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      top: 28px;
+      right: -8px;                 /* centre of the line (left items) */
+      width: 16px; height: 16px;
+      border-radius: 50%;
+      background: var(--orange);
+      box-shadow: 0 0 0 5px rgba(233, 78, 27, .18);
+      transition: transform .3s;
+    }
+    .timeline-item:nth-child(even)::before { right: auto; left: -8px; }
+    .timeline-item:hover::before { transform: scale(1.3); }
+
+    .timeline-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: 0 10px 30px rgba(122, 12, 26, .07);
+      transition: transform .3s, box-shadow .3s, border-color .3s;
+    }
+    .timeline-item:hover .timeline-card {
+      transform: translateY(-4px);
+      border-color: var(--orange);
+      box-shadow: 0 16px 36px rgba(122, 12, 26, .13);
+    }
+
+    .year-badge {
+      display: inline-block;
+      background: var(--orange);
+      color: var(--white);
+      border-radius: 50px;
+      padding: 5px 16px;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .timeline-card h3 { font-size: 19px; font-weight: 700; color: var(--maroon); margin-bottom: 8px; }
+    .timeline-card p { font-family: 'Inter', var(--font); font-size: 15px; line-height: 1.65; color: #555; }
+
+    /* =========================================================
+       RESPONSIVE
+       ========================================================= */
+
+    /* Tablet (768px – 1024px): hero stacks, timeline line moves left */
+    @media (max-width: 1024px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 56px; }
+      .hero-text { text-align: center; }
+      .hero-text p { margin-left: auto; margin-right: auto; }
+      .hero-buttons, .trust-row { justify-content: center; }
+      .hero-text h1 { font-size: 36px; }
+
+      .hero-collage { max-width: 640px; margin: 0 auto; width: 100%; }
+      .hero-collage > img { height: 360px; }
+      .card-stat { left: 12px; }
+      .card-award { right: 12px; }
+      .collage-blob { right: -16px; bottom: -24px; }
+
+      /* Timeline: single column, line on the left */
+      .story-timeline::before { left: 20px; }
+      .timeline-item,
+      .timeline-item:nth-child(even) {
+        width: 100%;
+        margin-left: 0;
+        padding: 0 0 32px 52px;
+      }
+      .timeline-item:last-child { padding-bottom: 0; }
+      .timeline-item::before,
+      .timeline-item:nth-child(even)::before { left: 12px; right: auto; }
+    }
+
+    /* Mobile (below 768px) */
+    @media (max-width: 767px) {
+      .about-hero-inner { padding: 40px 20px; }
+      .breadcrumb { margin-bottom: 32px; }
+      .hero-text h1 { font-size: 30px; }
+      .hero-text p { font-size: 16px; }
+
+      /* Full-width stacked buttons */
+      .hero-buttons { flex-direction: column; }
+      .btn { width: 100%; }
+      .trust-row { flex-direction: column; gap: 10px; }
+
+      .hero-collage > img { height: 280px; }
+
+      /* Smaller floating cards, kept inside the image edges */
+      .floating-card { padding: 10px 14px; font-size: 13px; }
+      .floating-card strong { font-size: 13px; }
+      .floating-card small { font-size: 11px; }
+      .card-stat { top: 10px; left: 10px; }
+      .card-award { bottom: 10px; right: 10px; max-width: 190px; font-size: 13px; }
+      .collage-blob { width: 120px; height: 120px; right: -10px; bottom: -14px; }
+
+      /* Timeline: line at 20px, cards margin-left 40px */
+      .our-story { padding: 50px 20px; }
+      .story-header h2 { font-size: 30px; }
+      .story-timeline::before { left: 20px; }
+      .timeline-item,
+      .timeline-item:nth-child(even) { padding: 0 0 24px 0; }
+      .timeline-card { margin-left: 40px; padding: 20px; }
+      .timeline-item::before,
+      .timeline-item:nth-child(even)::before { left: 12px; }
+    }
+
+    /* =========================================================
+       SECTION 3 – MISSION + VISION (BENTO GRID)
+       ========================================================= */
+    :root { --light-orange: #FFF0E8; }
+
+    .mission-section { background: var(--offwhite); padding: 70px 5% 30px; overflow: hidden; }
+    .mission-inner { max-width: 1280px; margin: 0 auto; }
+
+    /* Shared centered section header */
+    .section-head { text-align: center; max-width: 600px; margin: 0 auto 44px; }
+    .section-head h2 { font-size: 36px; font-weight: 700; color: var(--maroon); margin: 16px 0 8px; }
+    .section-head p { font-family: 'Inter', var(--font); font-size: 16px; color: #555; }
+
+    /* Bento: big mission card left, two stacked cards right */
+    .bento-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .bento-side { display: grid; grid-template-rows: 1fr 1fr; gap: 20px; }
+
+    /* Mission card (gradient) */
+    .mission-card {
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      background: var(--gradient);
+      color: var(--white);
+      border-radius: 28px;
+      padding: 36px 32px;
+      transition: transform .3s, box-shadow .3s;
+    }
+    .mission-card:hover { transform: translateY(-4px); box-shadow: 0 18px 40px rgba(122, 12, 26, .25); }
+
+    .mission-icon {
+      position: absolute;
+      top: 16px; right: 24px;
+      font-size: 120px;
+      line-height: 1;
+      opacity: .15;
+      pointer-events: none;
+    }
+    .mission-label { font-size: 12px; font-weight: 700; letter-spacing: 1.5px; color: rgba(255, 255, 255, .7); margin-bottom: 14px; }
+    .mission-card h3 { position: relative; font-size: 28px; font-weight: 700; line-height: 1.3; margin-bottom: 16px; max-width: 460px; }
+    .mission-card p { position: relative; font-family: 'Inter', var(--font); font-size: 15px; line-height: 1.7; color: rgba(255, 255, 255, .9); }
+
+    .mission-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 32px;
+      margin-top: auto;
+      padding-top: 28px;
+      font-weight: 700;
+      font-size: 18px;
+    }
+
+    /* Vision + Promise cards (white) */
+    .vision-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 28px;
+      transition: transform .3s, box-shadow .3s, border-color .3s;
+    }
+    .vision-card:hover { transform: translateY(-4px); border-color: var(--orange); box-shadow: 0 14px 32px rgba(122, 12, 26, .1); }
+
+    .icon-circle {
+      width: 48px; height: 48px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 50%;
+      background: var(--light-orange);
+      font-size: 22px;
+      margin-bottom: 14px;
+    }
+    .card-label { display: block; font-size: 12px; font-weight: 700; letter-spacing: 1.5px; color: var(--orange); margin-bottom: 8px; }
+    .vision-card h3 { font-size: 20px; font-weight: 700; color: var(--maroon); line-height: 1.35; margin-bottom: 8px; }
+    .vision-card p { font-family: 'Inter', var(--font); font-size: 14px; line-height: 1.6; color: #666; }
+
+    /* =========================================================
+       SECTION 4 – OUR VALUES (4 CARDS)
+       ========================================================= */
+    .values-section { background: var(--white); padding: 60px 5%; overflow: hidden; }
+    .values-section .section-head { margin-bottom: 40px; }
+    .values-section .section-head h2 { font-size: 34px; margin-bottom: 0; }
+
+    .values-grid {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .value-card {
+      position: relative;
+      overflow: hidden;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 28px 22px;
+      text-align: center;
+      transition: transform .3s, border-color .3s, box-shadow .3s;
+    }
+    /* 4px top bar: orange, becomes gradient on hover */
+    .value-card::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: var(--orange);
+      transition: background .3s;
+    }
+    .value-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--orange);
+      box-shadow: 0 16px 36px rgba(122, 12, 26, .12);
+    }
+    .value-card:hover::before { background: var(--gradient); }
+
+    .value-icon {
+      width: 60px; height: 60px;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 16px;
+      border-radius: 50%;
+      background: var(--light-orange);
+      font-size: 28px;
+    }
+    .value-card h3 { font-size: 18px; font-weight: 700; color: var(--maroon); margin-bottom: 8px; }
+    .value-card p { font-family: 'Inter', var(--font); font-size: 14px; line-height: 1.6; color: #666; }
+
+    /* ---- Tablet ---- */
+    @media (max-width: 1024px) {
+      .bento-grid { grid-template-columns: 1fr; }
+      .bento-side { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+      .values-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    /* ---- Mobile ---- */
+    @media (max-width: 767px) {
+      .mission-section { padding: 40px 20px 20px; }
+      .values-section { padding: 40px 20px; }
+      .section-head h2,
+      .values-section .section-head h2 { font-size: 28px; }
+      .section-head { margin-bottom: 28px; }
+
+      .mission-card { padding: 28px 20px; }
+      .mission-card h3 { font-size: 24px; }
+      .mission-icon { font-size: 90px; right: 14px; }
+      .bento-side { grid-template-columns: 1fr; }
+
+      .values-grid { grid-template-columns: 1fr; }
+      .value-card { padding: 24px 20px; }
+    }
+
+    /* =========================================================
+       SECTION 5 – MEET THE TEAM
+       ========================================================= */
+    .team-section { background: var(--offwhite); padding: 70px 5% 30px; overflow: hidden; }
+    .team-inner { max-width: 1280px; margin: 0 auto; }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 22px;
+    }
+
+    .team-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      overflow: hidden;
+      text-align: center;
+      transition: transform .3s, border-color .3s, box-shadow .3s;
+    }
+    .team-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--orange);
+      box-shadow: 0 18px 40px rgba(122, 12, 26, .14);
+    }
+
+    /* Photo + role badge overlay */
+    .team-photo { position: relative; height: 260px; overflow: hidden; background: var(--border); }
+    .team-photo img { width: 100%; height: 100%; object-fit: cover; transition: transform .3s; }
+    .team-card:hover .team-photo img { transform: scale(1.05); }
+
+    .role-badge {
+      position: absolute;
+      bottom: 12px; left: 50%;
+      transform: translateX(-50%);
+      background: var(--orange);
+      color: var(--white);
+      font-size: 12px; font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 50px;
+      white-space: nowrap;
+    }
+
+    .team-info { padding: 20px 16px 22px; }
+    .team-info h3 { font-size: 18px; font-weight: 700; color: var(--maroon); margin-bottom: 14px; }
+
+    /* Social circles */
+    .team-social { display: flex; justify-content: center; gap: 10px; }
+    .team-social a {
+      width: 32px; height: 32px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 50%;
+      background: var(--light-orange);
+      color: var(--orange);
+      transition: background .3s, color .3s, transform .3s;
+    }
+    .team-social a:hover { background: var(--orange); color: var(--white); transform: translateY(-2px); }
+    .team-social svg { width: 16px; height: 16px; fill: currentColor; }
+
+    .team-note {
+      text-align: center;
+      font-size: 14px;
+      color: #666;
+      margin-top: 24px;
+    }
+    .team-note::before {
+      content: "";
+      display: inline-block;
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--orange);
+      margin-right: 10px;
+      vertical-align: middle;
+    }
+
+    /* =========================================================
+       SECTION 6 – MILESTONES COUNTER BANNER
+       ========================================================= */
+    .counter-wrap { padding: 0 5%; background: var(--offwhite); }
+    .counter-wrap::before { content: ""; display: block; height: 40px; }
+    .counter-wrap::after  { content: ""; display: block; height: 60px; }
+
+    .counter-banner {
+      position: relative;
+      overflow: hidden;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 50px 5%;
+      background: var(--gradient);
+      border-radius: 28px;
+      color: var(--white);
+    }
+    /* Decorative circles */
+    .counter-banner::before,
+    .counter-banner::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      background: var(--white);
+      opacity: .08;
+      pointer-events: none;
+    }
+    .counter-banner::before { width: 300px; height: 300px; top: -130px; left: -80px; }
+    .counter-banner::after  { width: 220px; height: 220px; bottom: -100px; right: -50px; }
+
+    .counter-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      text-align: center;
+    }
+
+    .stat-item { padding: 6px 10px; border-right: 1px solid rgba(255, 255, 255, .2); }
+    .stat-item:last-child { border-right: 0; }
+
+    .stat-number { font-size: 42px; font-weight: 800; line-height: 1.1; color: var(--white); }
+    .stat-number .suffix { color: var(--light-orange); } /* + / ★ (light orange so it stays visible on the gradient) */
+    .stat-label { font-size: 14px; color: rgba(255, 255, 255, .85); margin-top: 6px; }
+
+    /* ---- Tablet ---- */
+    @media (max-width: 1024px) {
+      .team-grid { grid-template-columns: 1fr 1fr; }
+      .team-photo { height: 240px; }
+
+      .counter-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+      .stat-item { border-right: 0; }
+    }
+
+    /* ---- Mobile ---- */
+    @media (max-width: 767px) {
+      .team-section { padding: 40px 20px 20px; }
+      .team-grid { gap: 12px; }          /* stays 2 columns */
+      .team-card { border-radius: 18px; }
+      .team-photo { height: 180px; }
+      .role-badge { font-size: 10px; padding: 5px 10px; bottom: 8px; }
+      .team-info { padding: 14px 8px 16px; }
+      .team-info h3 { font-size: 15px; margin-bottom: 10px; }
+      .team-social { gap: 6px; }
+      .team-social a { width: 28px; height: 28px; }
+      .team-social svg { width: 14px; height: 14px; }
+
+      .counter-wrap { padding: 0 20px; }
+      .counter-banner { padding: 36px 20px; border-radius: 20px; }
+      .counter-grid { gap: 28px 12px; }
+      .stat-number { font-size: 32px; }
+      .stat-label { font-size: 13px; }
+    }
+
+    /* =========================================================
+       SECTION 7 – WHY SCHOOLS LOVE US (SPLIT LAYOUT)
+       ========================================================= */
+    .why-love-section { background: var(--white); padding: 60px 5%; overflow: hidden; }
+
+    .why-love-grid {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    /* Left: image + badge */
+    .why-love-image { position: relative; isolation: isolate; }
+    .why-love-image > img {
+      width: 100%;
+      height: 460px;
+      object-fit: cover;
+      border-radius: 28px;
+      background: var(--border);
+      box-shadow: 0 24px 50px rgba(122, 12, 26, .15);
+    }
+    /* Orange accent frame behind the image, offset 20px */
+    .why-love-accent {
+      position: absolute;
+      z-index: -1;
+      inset: 20px -20px -20px 20px;
+      border: 3px solid var(--orange);
+      border-radius: 28px;
+      opacity: .35;
+    }
+    .why-love-badge {
+      position: absolute;
+      left: 20px; bottom: 20px;
+      background: rgba(255, 255, 255, .8);
+      -webkit-backdrop-filter: blur(12px);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, .8);
+      border-radius: 16px;
+      padding: 14px 18px;
+      box-shadow: 0 12px 30px rgba(43, 43, 43, .15);
+    }
+    .why-love-badge strong { display: block; font-size: 15px; font-weight: 700; color: var(--maroon); }
+    .why-love-badge small { font-size: 12px; color: #777; }
+
+    /* Right: content */
+    .why-love-content .pill { margin-bottom: 18px; }
+    .why-love-content h2 { font-size: 34px; font-weight: 800; line-height: 1.2; color: var(--maroon); margin-bottom: 16px; }
+    .why-love-content > p { font-family: 'Inter', var(--font); font-size: 15px; line-height: 1.7; color: #666; }
+
+    .why-love-checklist { list-style: none; display: flex; flex-direction: column; gap: 12px; margin: 20px 0 28px; }
+    .why-love-checklist li { display: flex; align-items: flex-start; gap: 12px; }
+    .check-icon {
+      flex-shrink: 0;
+      width: 28px; height: 28px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 50%;
+      background: var(--orange);
+      color: var(--white);
+      font-size: 14px; font-weight: 700;
+    }
+    .why-love-checklist strong { display: block; font-size: 15px; font-weight: 700; color: var(--maroon); }
+    .why-love-checklist span.desc { font-family: 'Inter', var(--font); font-size: 14px; line-height: 1.5; color: #666; }
+
+    .btn-visit {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--orange); color: var(--white);
+      padding: 14px 28px;
+      border-radius: 12px;
+      font-weight: 700; font-size: 15px;
+      transition: background .3s, transform .3s;
+    }
+    .btn-visit:hover { background: var(--maroon); transform: translateY(-3px); }
+
+    /* =========================================================
+       SECTION 8 – FINAL CTA
+       ========================================================= */
+    .about-cta { background: var(--offwhite); padding: 0 5% 60px; }
+    .about-cta::before { content: ""; display: block; height: 60px; } /* breathing room under the counter */
+
+    .cta-banner {
+      position: relative;
+      overflow: hidden;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 48px 40px;
+      background: var(--gradient);
+      border-radius: 28px;
+      text-align: center;
+      color: var(--white);
+    }
+    .cta-banner::before,
+    .cta-banner::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      background: var(--white);
+      opacity: .08;
+      pointer-events: none;
+    }
+    .cta-banner::before { width: 280px; height: 280px; top: -120px; right: -60px; }
+    .cta-banner::after  { width: 200px; height: 200px; bottom: -90px; left: 5%; }
+
+    .cta-banner > * { position: relative; z-index: 1; }
+    .cta-banner h2 { font-size: 34px; font-weight: 700; line-height: 1.2; }
+    .cta-banner > p {
+      font-family: 'Inter', var(--font);
+      font-size: 16px; line-height: 1.6;
+      color: rgba(255, 255, 255, .9);
+      max-width: 600px;
+      margin: 12px auto 28px;
+    }
+
+    .cta-buttons { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; }
+    .cta-btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 14px 28px;
+      border-radius: 12px;
+      border: 2px solid var(--white);
+      font-weight: 700; font-size: 15px;
+      transition: background .3s, color .3s, transform .3s;
+    }
+    .cta-btn:hover { transform: translateY(-3px); }
+    .cta-btn-primary { background: var(--white); color: var(--maroon); padding: 14px 30px; }
+    .cta-btn-primary:hover { background: var(--light-orange); }
+    .cta-btn-outline { background: transparent; color: var(--white); }
+    .cta-btn-outline:hover { background: var(--white); color: var(--maroon); }
+
+    .cta-note { margin-top: 20px; font-size: 13px; color: rgba(255, 255, 255, .8); }
+
+    /* ---- Tablet ---- */
+    @media (max-width: 1024px) {
+      .why-love-grid { grid-template-columns: 1fr; gap: 56px; }
+      .why-love-image { max-width: 640px; margin: 0 auto; width: 100%; }
+      .why-love-image > img { height: 360px; }
+    }
+
+    /* ---- Mobile ---- */
+    @media (max-width: 767px) {
+      .why-love-section { padding: 40px 20px; }
+      .why-love-image > img { height: 280px; }
+      .why-love-accent { inset: 14px -10px -14px 10px; }
+      .why-love-badge { left: 12px; bottom: 12px; padding: 10px 14px; }
+      .why-love-badge strong { font-size: 13px; }
+      .why-love-badge small { font-size: 11px; }
+      .why-love-content h2 { font-size: 28px; }
+      .why-love-checklist strong { font-size: 14px; }
+      .why-love-checklist span.desc { font-size: 13px; }
+      .check-icon { width: 24px; height: 24px; font-size: 12px; }
+      .btn-visit { width: 100%; justify-content: center; }
+
+      .about-cta { padding: 0 20px 40px; }
+      .about-cta::before { height: 40px; }
+      .cta-banner { padding: 36px 20px; border-radius: 20px; }
+      .cta-banner h2 { font-size: 26px; }
+      .cta-buttons { flex-direction: column; }
+      .cta-btn { width: 100%; }
+    }
+
+    /* =========================================================
+       FOOTER (same as home page)
+       ========================================================= */
+    .footer {
+      --footer-text: #E8D5D0;
+      background: var(--maroon);
+      color: var(--white);
+      padding: 50px 5% 20px;
+    }
+    .footer-grid {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 3fr 2fr 2fr 3fr;
+      gap: 32px;
+    }
+    .footer-col h4 { margin: 0 0 16px; font-size: 17px; font-weight: 700; color: var(--white); }
+
+    .footer-col > a:not(.footer-logo),
+    .footer-col > span {
+      display: block;
+      padding: 5px 0;
+      font-size: 14px;
+      color: var(--footer-text);
+    }
+    .footer-col > a:not(.footer-logo) { transition: color var(--ease), transform var(--ease); }
+    .footer-col > a:not(.footer-logo):hover { color: var(--orange); transform: translateX(4px); }
+
+    .footer-logo { display: inline-flex; flex-direction: column; line-height: 1.1; margin-bottom: 14px; }
+    .footer-logo strong { font-size: 24px; font-weight: 800; letter-spacing: 1px; color: var(--white); }
+    .footer-logo span   { font-size: 14px; font-weight: 700; letter-spacing: 3px; color: var(--orange); }
+
+    .footer-brand p { margin: 0 0 20px; max-width: 340px; font-size: 14px; line-height: 1.6; color: var(--footer-text); }
+
+    .footer-social { display: flex; gap: 10px; }
+    .footer-social a {
+      width: 38px; height: 38px;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(255, 255, 255, 0.15);
+      color: var(--white);
+      border-radius: 50%;
+      font-size: 16px; font-weight: 700;
+      transition: background var(--ease), transform var(--ease);
+    }
+    .footer-social a:hover { background: var(--orange); transform: translateY(-3px); }
+
+    .footer-col > .footer-phone { font-size: 16px; font-weight: 700; color: var(--white); }
+
+    .footer-line {
+      max-width: 1280px;
+      margin: 32px auto 16px;
+      border: 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+    }
+    .footer-bottom {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 13px;
+      color: var(--footer-text);
+    }
+    .footer-bottom a { color: var(--white); transition: color var(--ease); }
+    .footer-bottom a:hover { color: var(--orange); }
+
+    @media (max-width: 1024px) {
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 767px) {
+      .footer { padding: 40px 20px 16px; }
+      .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+      .footer-bottom { flex-direction: column; align-items: center; text-align: center; gap: 8px; }
+    }
+
+    /* Respect reduced-motion preference */
+    @media (prefers-reduced-motion: reduce) {
+      .floating-card { animation: none; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =========================================================
+       NAVBAR
+       ========================================================= -->
+  <header class="navbar" id="navbar">
+
+    <!-- CSS-only toggle for the mobile menu -->
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Toggle menu">
+
+    <div class="navbar-inner">
+      <a href="home.html" class="logo" aria-label="Studio Four Media Works – Home">
+        <img src="images/Studio_Four_Logo%20(1).png" alt="Studio Four Media Works">
+      </a>
+
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="home.html">Home</a>
+        <a href="work.html">Work</a>
+        <a href="services.html">Services</a>
+        <a href="about.html" class="active" aria-current="page">About</a>
+        <a href="blogs.html">Blog</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="contact.html" class="btn-book">Book Now <span class="arrow">&rarr;</span></a>
+        <label for="nav-toggle" class="hamburger" aria-label="Open menu">
+          <span></span><span></span><span></span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Mobile slide-down menu -->
+    <div class="mobile-menu">
+      <div class="mobile-menu-top">
+        <a href="home.html" class="logo" aria-label="Studio Four Media Works – Home">
+          <img src="images/Studio_Four_Logo%20(1).png" alt="Studio Four Media Works">
+        </a>
+        <label for="nav-toggle" class="close-btn" aria-label="Close menu">&times;</label>
+      </div>
+
+      <nav class="mobile-links" aria-label="Mobile navigation">
+        <a href="home.html">Home</a>
+        <a href="work.html">Work</a>
+        <a href="services.html">Services</a>
+        <a href="about.html" class="active" aria-current="page">About</a>
+        <a href="blogs.html">Blog</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+
+      <div class="mobile-menu-bottom">
+        <a href="contact.html" class="btn-book">Book Now <span class="arrow">&rarr;</span></a>
+        <div class="mobile-phones">
+          <a href="tel:+919074371711">90743 71711</a><span class="sep">|</span>
+          <a href="tel:+916238371711">62383 71711</a><span class="sep">|</span>
+          <a href="tel:+919567171711">95671 71711</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- =========================================================
+       PAGE BANNER (sits right under the navbar)
+       ========================================================= -->
+  <section class="page-banner">
+    <div class="banner-inner">
+      <!-- Breadcrumb -->
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="home.html">Home</a><span>/</span>About Us
+      </nav>
+      <p class="banner-title">About Us</p>
+      <p class="banner-sub">Meet the team behind South India's most trusted school photography brand.</p>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       SECTION 1 – ABOUT HERO
+       ========================================================= -->
+  <section class="about-hero">
+    <div class="about-hero-inner">
+
+      <div class="hero-grid">
+
+        <!-- LEFT: text -->
+        <div class="hero-text">
+          <span class="pill">About Studio Four ✨</span>
+
+          <h1>We Don't Just Take Photos. We Preserve <span class="gradient-text">Memories.</span></h1>
+
+          <p>From a small team in Palakkad to South India's most trusted school photography brand - our journey is built on trust, quality &amp; love for every student.</p>
+
+          <div class="hero-buttons">
+            <a href="#" class="btn btn-primary">Our Work <span aria-hidden="true">→</span></a>
+            <a href="#" class="btn btn-outline">Meet Our Team</a>
+          </div>
+
+          <div class="trust-row">
+            <div class="avatars">
+              <img src="images/person.svg" alt="Happy client">
+              <img src="images/person.svg" alt="Happy client">
+              <img src="images/person.svg" alt="Happy client">
+            </div>
+            <div class="trust-text">
+              <strong>Trusted by 100+ Schools</strong>
+              <span class="stars" aria-label="5 out of 5 stars">★★★★★</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT: image collage -->
+        <div class="hero-collage">
+          <div class="collage-blob" aria-hidden="true"></div>
+          <img src="images/about-team.jpg" alt="The Studio Four Media Works team">
+
+          <div class="floating-card card-stat">
+            <strong>📸 5000+ Shoots Completed</strong>
+            <small>Since 2015</small>
+          </div>
+
+          <div class="floating-card card-award">
+            🏆 Best School Photography Team - Kerala 2025
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       SECTION 2 – OUR STORY (TIMELINE)
+       ========================================================= -->
+  <section class="our-story">
+
+    <div class="story-header">
+      <span class="pill">Our Journey</span>
+      <h2>Our Story</h2>
+      <p>How a passion became a profession</p>
+    </div>
+
+    <div class="story-timeline">
+
+      <div class="timeline-item">
+        <div class="timeline-card">
+          <span class="year-badge">2015</span>
+          <h3>Started in Palakkad</h3>
+          <p>Started with 2 cameras, 1 laptop &amp; a dream - to give every school premium photography.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-card">
+          <span class="year-badge">2018</span>
+          <h3>50+ Schools Milestone</h3>
+          <p>We became the go-to team for graduation &amp; ID cards across Kerala.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-card">
+          <span class="year-badge">2022</span>
+          <h3>Drone &amp; Video Team Added</h3>
+          <p>Added cinematic videos, drone coverage &amp; full event production.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-card">
+          <span class="year-badge">2026</span>
+          <h3>100+ Schools Across South India</h3>
+          <p>Now serving Kerala, Tamil Nadu &amp; Karnataka with a 15-member expert team.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================================================
+       SECTION 3 – MISSION + VISION (BENTO GRID)
+       ========================================================= -->
+  <section class="mission-section">
+    <div class="mission-inner">
+
+      <div class="section-head">
+        <span class="pill">What Drives Us</span>
+        <h2>Our Mission &amp; Vision</h2>
+        <p>Why we wake up every morning</p>
+      </div>
+
+      <div class="bento-grid">
+
+        <!-- LEFT: Mission (large) -->
+        <article class="mission-card">
+          <span class="mission-icon" aria-hidden="true">🎯</span>
+          <span class="mission-label">OUR MISSION</span>
+          <h3>To Give Every Student A Memory Worth Keeping</h3>
+          <p>Every child deserves a beautiful graduation photo, a perfect ID card, and a school memory they can show their kids one day. We make that happen - with quality, safety &amp; love.</p>
+          <div class="mission-stats">
+            <span>100+ Schools</span>
+            <span>5000+ Shoots</span>
+          </div>
+        </article>
+
+        <!-- RIGHT: Vision + Promise stacked -->
+        <div class="bento-side">
+          <article class="vision-card">
+            <div class="icon-circle" aria-hidden="true">👁️</div>
+            <span class="card-label">OUR VISION</span>
+            <h3>South India's Most Trusted School Media Brand</h3>
+            <p>To be the first name every principal thinks of for school photography.</p>
+          </article>
+
+          <article class="vision-card promise-card">
+            <div class="icon-circle" aria-hidden="true">🤝</div>
+            <span class="card-label">OUR PROMISE</span>
+            <h3>On-Time, Safe &amp; Premium - Every Single Time</h3>
+            <p>No delays, no compromises. If we promise 7 days, we deliver in 7 days.</p>
+          </article>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       SECTION 4 – OUR VALUES
+       ========================================================= -->
+  <section class="values-section">
+
+    <div class="section-head">
+      <span class="pill">Our Values</span>
+      <h2>What We Stand For</h2>
+    </div>
+
+    <div class="values-grid">
+
+      <article class="value-card">
+        <div class="value-icon" aria-hidden="true">❤️</div>
+        <h3>Student First</h3>
+        <p>Every shoot is planned around kids - their comfort, safety &amp; happiness comes first.</p>
+      </article>
+
+      <article class="value-card">
+        <div class="value-icon" aria-hidden="true">⭐</div>
+        <h3>Premium Quality</h3>
+        <p>We never compromise on quality. Best cameras, best editing, best prints - always.</p>
+      </article>
+
+      <article class="value-card">
+        <div class="value-icon" aria-hidden="true">⏰</div>
+        <h3>On-Time Delivery</h3>
+        <p>Your event is once. Your delivery is on time. 7-day promise, kept every time.</p>
+      </article>
+
+      <article class="value-card">
+        <div class="value-icon" aria-hidden="true">🛡️</div>
+        <h3>Trust &amp; Safety</h3>
+        <p>Verified team, secure galleries, parental consent - your child's photos are safe with us.</p>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- =========================================================
+       SECTION 5 – MEET THE TEAM
+       ========================================================= -->
+  <section class="team-section">
+    <div class="team-inner">
+
+      <div class="section-head">
+        <span class="pill">Our Team</span>
+        <h2>Meet The People Behind The Camera</h2>
+        <p>A small team with big passion for school memories</p>
+      </div>
+
+      <div class="team-grid">
+
+        <!-- Member 1 -->
+        <article class="team-card">
+          <div class="team-photo">
+            <img src="images/person.svg" alt="Arjun Menon">
+            <span class="role-badge">Founder &amp; Lead Photographer</span>
+          </div>
+          <div class="team-info">
+            <h3>Arjun Menon</h3>
+            <div class="team-social">
+              <a href="#" aria-label="Arjun Menon on Instagram"><svg viewBox="0 0 24 24"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 8.2a3.2 3.2 0 1 1 0-6.4 3.2 3.2 0 0 1 0 6.4zM17.3 5.6a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 0 0 0-2.4zM7.5 2h9A5.5 5.5 0 0 1 22 7.5v9a5.5 5.5 0 0 1-5.5 5.5h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2zm0 1.8A3.7 3.7 0 0 0 3.8 7.5v9a3.7 3.7 0 0 0 3.7 3.7h9a3.7 3.7 0 0 0 3.7-3.7v-9a3.7 3.7 0 0 0-3.7-3.7h-9z"/></svg></a>
+              <a href="#" aria-label="Arjun Menon on WhatsApp"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.200zm4.500-6.100c-.2-.1-1.500-.7-1.700-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.200-.3.200-.5.100-.7-.3-1.500-.8-2.100-1.400-.5-.5-.9-1-1.200-1.600-.1-.2 0-.4.100-.5l.4-.4.2-.4v-.4l-.8-1.800c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.100-.6.300-.6.600-.9 1.300-.9 2.100.1 1 .5 1.900 1.100 2.700 1.100 1.600 2.500 2.800 4.200 3.500.5.2 1 .4 1.500.4.7 0 1.500-.5 1.800-1.100.1-.3.100-.6.1-.8l-.5-.3z"/></svg></a>
+              <a href="#" aria-label="Arjun Menon on LinkedIn"><svg viewBox="0 0 24 24"><path d="M4.500 3A2.500 2.500 0 1 0 4.500 8a2.500 2.500 0 0 0 0-5zM2.300 9.500h4.400V22H2.300V9.500zm7.300 0h4.200v1.700h.1c.6-1.100 2-2 4-2 4.300 0 5.100 2.800 5.100 6.500V22h-4.400v-5.600c0-1.400 0-3-1.900-3s-2.100 1.400-2.100 2.900V22H9.600V9.500z"/></svg></a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Member 2 -->
+        <article class="team-card">
+          <div class="team-photo">
+            <img src="images/person.svg" alt="Priya Sharma">
+            <span class="role-badge">Creative Director</span>
+          </div>
+          <div class="team-info">
+            <h3>Priya Sharma</h3>
+            <div class="team-social">
+              <a href="#" aria-label="Priya Sharma on Instagram"><svg viewBox="0 0 24 24"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 8.2a3.2 3.2 0 1 1 0-6.4 3.2 3.2 0 0 1 0 6.4zM17.3 5.6a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 0 0 0-2.4zM7.5 2h9A5.5 5.5 0 0 1 22 7.5v9a5.5 5.5 0 0 1-5.5 5.5h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2zm0 1.8A3.7 3.7 0 0 0 3.8 7.5v9a3.7 3.7 0 0 0 3.7 3.7h9a3.7 3.7 0 0 0 3.7-3.7v-9a3.7 3.7 0 0 0-3.7-3.7h-9z"/></svg></a>
+              <a href="#" aria-label="Priya Sharma on WhatsApp"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.200zm4.500-6.100c-.2-.1-1.500-.7-1.700-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.200-.3.200-.5.100-.7-.3-1.500-.8-2.100-1.400-.5-.5-.9-1-1.200-1.600-.1-.2 0-.4.100-.5l.4-.4.2-.4v-.4l-.8-1.800c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.100-.6.300-.6.600-.9 1.300-.9 2.100.1 1 .5 1.900 1.100 2.700 1.100 1.600 2.500 2.800 4.200 3.500.5.2 1 .4 1.500.4.7 0 1.500-.5 1.800-1.100.1-.3.100-.6.1-.8l-.5-.3z"/></svg></a>
+              <a href="#" aria-label="Priya Sharma on LinkedIn"><svg viewBox="0 0 24 24"><path d="M4.500 3A2.500 2.500 0 1 0 4.500 8a2.500 2.500 0 0 0 0-5zM2.300 9.500h4.400V22H2.300V9.500zm7.300 0h4.200v1.700h.1c.6-1.100 2-2 4-2 4.300 0 5.100 2.800 5.100 6.500V22h-4.400v-5.600c0-1.400 0-3-1.900-3s-2.100 1.400-2.100 2.900V22H9.600V9.500z"/></svg></a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Member 3 -->
+        <article class="team-card">
+          <div class="team-photo">
+            <img src="images/person.svg" alt="Rahul Nair">
+            <span class="role-badge">Drone &amp; Video Expert</span>
+          </div>
+          <div class="team-info">
+            <h3>Rahul Nair</h3>
+            <div class="team-social">
+              <a href="#" aria-label="Rahul Nair on Instagram"><svg viewBox="0 0 24 24"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 8.2a3.2 3.2 0 1 1 0-6.4 3.2 3.2 0 0 1 0 6.4zM17.3 5.6a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 0 0 0-2.4zM7.5 2h9A5.5 5.5 0 0 1 22 7.5v9a5.5 5.5 0 0 1-5.5 5.5h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2zm0 1.8A3.7 3.7 0 0 0 3.8 7.5v9a3.7 3.7 0 0 0 3.7 3.7h9a3.7 3.7 0 0 0 3.7-3.7v-9a3.7 3.7 0 0 0-3.7-3.7h-9z"/></svg></a>
+              <a href="#" aria-label="Rahul Nair on WhatsApp"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.200zm4.500-6.100c-.2-.1-1.500-.7-1.700-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.200-.3.200-.5.100-.7-.3-1.500-.8-2.100-1.400-.5-.5-.9-1-1.200-1.600-.1-.2 0-.4.100-.5l.4-.4.2-.4v-.4l-.8-1.800c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.100-.6.300-.6.600-.9 1.300-.9 2.100.1 1 .5 1.900 1.100 2.700 1.100 1.600 2.500 2.800 4.200 3.500.5.2 1 .4 1.500.4.7 0 1.500-.5 1.800-1.100.1-.3.100-.6.1-.8l-.5-.3z"/></svg></a>
+              <a href="#" aria-label="Rahul Nair on LinkedIn"><svg viewBox="0 0 24 24"><path d="M4.500 3A2.500 2.500 0 1 0 4.500 8a2.500 2.500 0 0 0 0-5zM2.300 9.500h4.400V22H2.300V9.500zm7.300 0h4.200v1.700h.1c.6-1.100 2-2 4-2 4.300 0 5.100 2.800 5.100 6.500V22h-4.400v-5.600c0-1.400 0-3-1.900-3s-2.100 1.400-2.100 2.900V22H9.600V9.500z"/></svg></a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Member 4 -->
+        <article class="team-card">
+          <div class="team-photo">
+            <img src="images/person.svg" alt="Sneha Pillai">
+            <span class="role-badge">Client Manager</span>
+          </div>
+          <div class="team-info">
+            <h3>Sneha Pillai</h3>
+            <div class="team-social">
+              <a href="#" aria-label="Sneha Pillai on Instagram"><svg viewBox="0 0 24 24"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 8.2a3.2 3.2 0 1 1 0-6.4 3.2 3.2 0 0 1 0 6.4zM17.3 5.6a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 0 0 0-2.4zM7.5 2h9A5.5 5.5 0 0 1 22 7.5v9a5.5 5.5 0 0 1-5.5 5.5h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2zm0 1.8A3.7 3.7 0 0 0 3.8 7.5v9a3.7 3.7 0 0 0 3.7 3.7h9a3.7 3.7 0 0 0 3.7-3.7v-9a3.7 3.7 0 0 0-3.7-3.7h-9z"/></svg></a>
+              <a href="#" aria-label="Sneha Pillai on WhatsApp"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.200zm4.500-6.100c-.2-.1-1.500-.7-1.700-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.200-.3.200-.5.100-.7-.3-1.500-.8-2.100-1.400-.5-.5-.9-1-1.200-1.600-.1-.2 0-.4.100-.5l.4-.4.2-.4v-.4l-.8-1.800c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.100-.6.300-.6.600-.9 1.300-.9 2.100.1 1 .5 1.900 1.100 2.700 1.100 1.600 2.500 2.800 4.200 3.500.5.2 1 .4 1.500.4.7 0 1.500-.5 1.800-1.100.1-.3.100-.6.1-.8l-.5-.3z"/></svg></a>
+              <a href="#" aria-label="Sneha Pillai on LinkedIn"><svg viewBox="0 0 24 24"><path d="M4.500 3A2.500 2.500 0 1 0 4.500 8a2.500 2.500 0 0 0 0-5zM2.300 9.500h4.400V22H2.300V9.500zm7.300 0h4.200v1.700h.1c.6-1.100 2-2 4-2 4.300 0 5.100 2.800 5.100 6.500V22h-4.400v-5.600c0-1.400 0-3-1.900-3s-2.100 1.400-2.100 2.900V22H9.600V9.500z"/></svg></a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+      <p class="team-note">Plus 11 more photographers, editors &amp; support staff</p>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       SECTION 6 – MILESTONES COUNTER BANNER
+       ========================================================= -->
+  <div class="counter-wrap">
+    <section class="counter-banner" aria-label="Studio Four milestones">
+      <div class="counter-grid">
+
+        <div class="stat-item">
+          <div class="stat-number"><span class="count" data-target="100">100</span><span class="suffix">+</span></div>
+          <div class="stat-label">Schools Served</div>
+        </div>
+
+        <div class="stat-item">
+          <div class="stat-number"><span class="count" data-target="5000">5,000</span><span class="suffix">+</span></div>
+          <div class="stat-label">Shoots Completed</div>
+        </div>
+
+        <div class="stat-item">
+          <div class="stat-number"><span class="count" data-target="10">10</span><span class="suffix">+</span></div>
+          <div class="stat-label">Years Experience</div>
+        </div>
+
+        <div class="stat-item">
+          <div class="stat-number"><span class="count" data-target="4.9" data-decimal="1">4.9</span><span class="suffix">★</span></div>
+          <div class="stat-label">Average Rating</div>
+        </div>
+
+      </div>
+    </section>
+  </div>
+
+  <!-- =========================================================
+       SECTION 7 – WHY SCHOOLS LOVE US
+       ========================================================= -->
+  <section class="why-love-section">
+    <div class="why-love-grid">
+
+      <!-- LEFT: image + rating badge -->
+      <div class="why-love-image">
+        <div class="why-love-accent" aria-hidden="true"></div>
+        <img src="images/about-school.jpg" alt="Studio Four team photographing students at a school">
+        <div class="why-love-badge">
+          <strong>⭐ 4.9 Rating</strong>
+          <small>200+ Reviews from Schools</small>
+        </div>
+      </div>
+
+      <!-- RIGHT: content -->
+      <div class="why-love-content">
+        <span class="pill">Why Schools Love Us</span>
+        <h2>More Than A Vendor. A Partner For Your School.</h2>
+        <p>Principals don't have time to chase photographers. That's why we built a process that is simple, safe &amp; stress-free - from first call to final delivery.</p>
+
+        <ul class="why-love-checklist">
+          <li>
+            <span class="check-icon" aria-hidden="true">✓</span>
+            <div><strong>Dedicated Manager</strong><span class="desc">One person for your school - on WhatsApp &amp; Call, always.</span></div>
+          </li>
+          <li>
+            <span class="check-icon" aria-hidden="true">✓</span>
+            <div><strong>Safe &amp; Verified Team</strong><span class="desc">Background-verified photographers, child-safe process.</span></div>
+          </li>
+          <li>
+            <span class="check-icon" aria-hidden="true">✓</span>
+            <div><strong>Transparent Pricing</strong><span class="desc">One clear quote upfront. No hidden charges, ever.</span></div>
+          </li>
+          <li>
+            <span class="check-icon" aria-hidden="true">✓</span>
+            <div><strong>Custom For Your School</strong><span class="desc">Your logo, colours &amp; name on every deliverable.</span></div>
+          </li>
+          <li>
+            <span class="check-icon" aria-hidden="true">✓</span>
+            <div><strong>7-Day Delivery Promise</strong><span class="desc">Photos, videos &amp; albums delivered on time, every time.</span></div>
+          </li>
+        </ul>
+
+        <a href="#book" class="btn-visit">Book A Free Visit <span aria-hidden="true">→</span></a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================================================
+       SECTION 8 – FINAL CTA
+       ========================================================= -->
+  <section class="about-cta" id="book">
+    <div class="cta-banner">
+      <h2>Want To Meet Us In Person?</h2>
+      <p>We will visit your school, show you samples &amp; plan your shoot - completely free.</p>
+
+      <div class="cta-buttons">
+        <a href="contact.html" class="cta-btn cta-btn-primary">Schedule Free School Visit <span aria-hidden="true">→</span></a>
+        <a href="tel:9074371711" class="cta-btn cta-btn-outline">Call 90743 71711</a>
+      </div>
+
+      <p class="cta-note">No commitment • Free samples • 2-hour response</p>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       FOOTER
+       ========================================================= -->
+  <footer class="footer">
+    <div class="footer-grid">
+
+      <!-- Column 1: brand -->
+      <div class="footer-col footer-brand">
+        <a href="home.html" class="footer-logo" aria-label="Studio Four Media Works">
+          <strong>STUDIO FOUR</strong>
+          <span>MEDIA WORKS</span>
+        </a>
+        <p>Premium photography &amp; media solutions for schools, colleges &amp; events across South India. Capturing moments, creating memories.</p>
+
+        <div class="footer-social">
+          <a href="#" aria-label="Instagram">📸</a>
+          <a href="#" aria-label="Facebook">f</a>
+          <a href="#" aria-label="YouTube">▶</a>
+          <a href="#" aria-label="WhatsApp">💬</a>
+        </div>
+      </div>
+
+      <!-- Column 2: quick links -->
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <a href="home.html">Home</a>
+        <a href="work.html">Work</a>
+        <a href="services.html">Services</a>
+        <a href="about.html">About Us</a>
+        <a href="blogs.html">Blog</a>
+        <a href="contact.html">Contact</a>
+      </div>
+
+      <!-- Column 3: services -->
+      <div class="footer-col">
+        <h4>Our Services</h4>
+        <a href="#">Graduation Albums</a>
+        <a href="#">Smart ID Cards</a>
+        <a href="#">Group Photography</a>
+        <a href="#">Event Coverage</a>
+        <a href="#">Drone Coverage</a>
+        <a href="#">Editing</a>
+      </div>
+
+      <!-- Column 4: contact -->
+      <div class="footer-col footer-contact">
+        <h4>Contact Us</h4>
+        <a href="tel:9074371711" class="footer-phone">📞 90743 71711</a>
+        <a href="tel:6238371711">📞 62383 71711</a>
+        <a href="tel:9567171711">📞 95671 71711</a>
+        <a href="mailto:hello@studiofour.in">✉️ hello@studiofour.in</a>
+        <span>📍 Palakkad, Kerala, India</span>
+        <span>🕒 Mon - Sat: 9 AM - 7 PM</span>
+      </div>
+
+    </div>
+
+    <hr class="footer-line">
+
+    <div class="footer-bottom">
+      <p>&copy; 2026 Studio Four Media Works. All Rights Reserved.</p>
+      <p><a href="#">Privacy Policy</a> &bull; <a href="#">Terms of Service</a> &bull; Made in Kerala ❤️</p>
+    </div>
+  </footer>
+
+  <!-- Counter animation: runs once when the banner scrolls into view -->
+  <script>
+    (function () {
+      var banner = document.querySelector('.counter-banner');
+      var counters = document.querySelectorAll('.count');
+      if (!banner || !counters.length) return;
+
+      var DURATION = 2000; // ms
+      var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      // Format a value: decimals via toFixed, thousands separated with commas
+      function format(el, value) {
+        var decimals = parseInt(el.dataset.decimal || '0', 10);
+        return value.toLocaleString('en-US', {
+          minimumFractionDigits: decimals,
+          maximumFractionDigits: decimals
+        });
+      }
+
+      function animate(el) {
+        var target = parseFloat(el.dataset.target);
+        var start = null;
+
+        function step(ts) {
+          if (start === null) start = ts;
+          var t = Math.min((ts - start) / DURATION, 1);
+          var eased = 1 - Math.pow(1 - t, 3);           // ease-out (cubic)
+          el.textContent = format(el, target * eased);
+          if (t < 1) requestAnimationFrame(step);
+          else el.textContent = format(el, target);
+        }
+        requestAnimationFrame(step);
+      }
+
+      function run() {
+        counters.forEach(function (el) {
+          if (reduceMotion) { el.textContent = format(el, parseFloat(el.dataset.target)); return; }
+          el.textContent = format(el, 0);
+          animate(el);
+        });
+      }
+
+      if (!('IntersectionObserver' in window)) { run(); return; }
+
+      var observer = new IntersectionObserver(function (entries) {
+        if (entries[0].isIntersecting) {
+          run();
+          observer.disconnect();                          // only once
+        }
+      }, { threshold: 0.4 });
+      observer.observe(banner);
+    })();
+  </script>
+
+  <!-- Tiny vanilla JS: shadow on scroll + close mobile menu when a link is tapped -->
+  <script>
+    (function () {
+      var navbar = document.getElementById('navbar');
+      var toggle = document.getElementById('nav-toggle');
+
+      function onScroll() { navbar.classList.toggle('scrolled', window.scrollY > 4); }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+
+      document.querySelectorAll('.mobile-menu a').forEach(function (a) {
+        a.addEventListener('click', function () { toggle.checked = false; });
+      });
+    })();
+  </script>
+
+</body>
+</html>
