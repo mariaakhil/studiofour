@@ -627,6 +627,18 @@ img { max-width: 100%; display: block; }
 .vslide-info h3 { margin: 0 0 4px; font-size: 17px; font-weight: 700; color: var(--maroon); }
 .vslide-info span { font-size: 13px; color: var(--orange); font-weight: 600; }
 
+.vslider-more { margin-top: 24px; text-align: center; }
+.vslider-more-link {
+  display: inline-block;
+  padding: 12px 26px;
+  color: var(--maroon);
+  font-weight: 700;
+  border: 1.5px solid var(--maroon);
+  border-radius: 12px;
+  transition: background var(--ease), color var(--ease);
+}
+.vslider-more-link:hover { background: var(--maroon); color: var(--white); }
+
 /* Tablet: 2 slides */
 @media (max-width: 1024px) {
   .vslider { padding: 56px 5%; }

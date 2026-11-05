@@ -292,6 +292,18 @@
       transition: background .3s, transform .3s;
     }
     .btn-enquire:hover { background: var(--maroon); transform: translateY(-3px); }
+    .btn-details {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      background: var(--white); color: var(--maroon);
+      padding: 11.5px 24px;
+      border: 1.5px solid var(--maroon); border-radius: 12px;
+      font-weight: 700; font-size: 15px;
+      transition: background .3s, color .3s, transform .3s;
+    }
+    .btn-details:hover { background: var(--maroon); color: var(--white); transform: translateY(-3px); }
+    .service-content h2 a { color: inherit; transition: color .3s; }
+    .service-content h2 a:hover { color: var(--orange); }
+    .service-img a { display: block; }
     .call-link { font-size: 14px; font-weight: 600; color: var(--maroon); transition: color .3s; }
     .call-link:hover { color: var(--orange); }
 
@@ -702,7 +714,7 @@
       .service-content h2 { font-size: 22px; }
 
       .service-actions { flex-direction: column; align-items: stretch; text-align: center; }
-      .btn-enquire { width: 100%; }
+      .btn-enquire, .btn-details { width: 100%; }
 
       .footer { padding: 40px 20px 16px; }
       .footer-grid { grid-template-columns: 1fr; gap: 28px; }
@@ -794,12 +806,12 @@
       <!-- 01. Graduation Albums -->
       <article class="service-row">
         <div class="service-img">
-          <img src="images/graduation.jpg" alt="Graduation photography">
+          <a href="service-graduation.html" aria-label="Graduation Albums details"><img src="images/graduation.jpg" alt="Graduation photography"></a>
           <span class="price-badge">From ₹499 / student</span>
         </div>
         <div class="service-content">
           <span class="service-num">01</span>
-          <h2>Graduation Albums</h2>
+          <h2><a href="service-graduation.html">Graduation Albums</a></h2>
           <p>Premium graduation shoot with concept, group &amp; album design.</p>
           <ul class="service-tags">
             <li>Concept Shoot</li>
@@ -807,6 +819,7 @@
             <li>Digital Gallery</li>
           </ul>
           <div class="service-actions">
+            <a href="service-graduation.html" class="btn-details">View Details <span aria-hidden="true">&rarr;</span></a>
             <a href="contact.html" class="btn-enquire">Enquire Now <span aria-hidden="true">→</span></a>
             <a href="tel:9074371711" class="call-link">Call 90743 71711</a>
           </div>
@@ -816,12 +829,12 @@
       <!-- 02. Smart ID Cards -->
       <article class="service-row">
         <div class="service-img">
-          <img src="images/idcard.jpg" alt="Smart ID cards">
+          <a href="service-id-cards.html" aria-label="Smart ID Cards details"><img src="images/idcard.jpg" alt="Smart ID cards"></a>
           <span class="price-badge">From ₹49 / card</span>
         </div>
         <div class="service-content">
           <span class="service-num">02</span>
-          <h2>Smart ID Cards</h2>
+          <h2><a href="service-id-cards.html">Smart ID Cards</a></h2>
           <p>PVC &amp; Smart ID cards with QR, photo &amp; school branding.</p>
           <ul class="service-tags">
             <li>PVC / Smart</li>
@@ -829,6 +842,7 @@
             <li>10-Day Delivery</li>
           </ul>
           <div class="service-actions">
+            <a href="service-id-cards.html" class="btn-details">View Details <span aria-hidden="true">&rarr;</span></a>
             <a href="contact.html" class="btn-enquire">Enquire Now <span aria-hidden="true">→</span></a>
             <a href="tel:9074371711" class="call-link">Call 90743 71711</a>
           </div>
@@ -838,12 +852,12 @@
       <!-- 03. Group Photography -->
       <article class="service-row">
         <div class="service-img">
-          <img src="images/group.jpg" alt="School group photograph">
+          <a href="service-group-photography.html" aria-label="Group Photography details"><img src="images/group.jpg" alt="School group photograph"></a>
           <span class="price-badge">From ₹2999 / shoot</span>
         </div>
         <div class="service-content">
           <span class="service-num">03</span>
-          <h2>Group Photography</h2>
+          <h2><a href="service-group-photography.html">Group Photography</a></h2>
           <p>Batch, class &amp; staff photos arranged perfectly.</p>
           <ul class="service-tags">
             <li>Batch Photos</li>
@@ -851,6 +865,7 @@
             <li>Framed Print</li>
           </ul>
           <div class="service-actions">
+            <a href="service-group-photography.html" class="btn-details">View Details <span aria-hidden="true">&rarr;</span></a>
             <a href="contact.html" class="btn-enquire">Enquire Now <span aria-hidden="true">→</span></a>
             <a href="tel:9074371711" class="call-link">Call 90743 71711</a>
           </div>
@@ -860,12 +875,12 @@
       <!-- 04. Event Coverage -->
       <article class="service-row">
         <div class="service-img">
-          <img src="images/event.jpg" alt="School event coverage">
+          <a href="service-event-coverage.html" aria-label="Event Coverage details"><img src="images/event.jpg" alt="School event coverage"></a>
           <span class="price-badge">From ₹9999 / event</span>
         </div>
         <div class="service-content">
           <span class="service-num">04</span>
-          <h2>Event Coverage</h2>
+          <h2><a href="service-event-coverage.html">Event Coverage</a></h2>
           <p>Annual Day, Sports Day &amp; Fest - full photo + video team.</p>
           <ul class="service-tags">
             <li>Photo + Video</li>
@@ -873,6 +888,7 @@
             <li>Live Streaming</li>
           </ul>
           <div class="service-actions">
+            <a href="service-event-coverage.html" class="btn-details">View Details <span aria-hidden="true">&rarr;</span></a>
             <a href="contact.html" class="btn-enquire">Enquire Now <span aria-hidden="true">→</span></a>
             <a href="tel:9074371711" class="call-link">Call 90743 71711</a>
           </div>
@@ -882,12 +898,12 @@
       <!-- 05. Drone Coverage -->
       <article class="service-row">
         <div class="service-img">
-          <img src="images/drone.jpg" alt="Drone view of a school campus">
+          <a href="service-drone-coverage.html" aria-label="Drone Coverage details"><img src="images/drone.jpg" alt="Drone view of a school campus"></a>
           <span class="price-badge">From ₹4999 / shoot</span>
         </div>
         <div class="service-content">
           <span class="service-num">05</span>
-          <h2>Drone Coverage</h2>
+          <h2><a href="service-drone-coverage.html">Drone Coverage</a></h2>
           <p>4K aerial shots for campus, events &amp; promotions.</p>
           <ul class="service-tags">
             <li>4K Drone</li>
@@ -895,6 +911,7 @@
             <li>Licensed Pilot</li>
           </ul>
           <div class="service-actions">
+            <a href="service-drone-coverage.html" class="btn-details">View Details <span aria-hidden="true">&rarr;</span></a>
             <a href="contact.html" class="btn-enquire">Enquire Now <span aria-hidden="true">→</span></a>
             <a href="tel:9074371711" class="call-link">Call 90743 71711</a>
           </div>
@@ -904,12 +921,12 @@
       <!-- 06. Design &amp; Editing -->
       <article class="service-row">
         <div class="service-img">
-          <img src="images/design.jpg" alt="Yearbook and poster designs">
+          <a href="service-editing.html" aria-label="Design and Editing details"><img src="images/design.jpg" alt="Yearbook and poster designs"></a>
           <span class="price-badge">From ₹999 / design</span>
         </div>
         <div class="service-content">
           <span class="service-num">06</span>
-          <h2>Design &amp; Editing</h2>
+          <h2><a href="service-editing.html">Design &amp; Editing</a></h2>
           <p>Yearbooks, posters, banners &amp; social creatives.</p>
           <ul class="service-tags">
             <li>Yearbook</li>
@@ -917,6 +934,7 @@
             <li>Social Media</li>
           </ul>
           <div class="service-actions">
+            <a href="service-editing.html" class="btn-details">View Details <span aria-hidden="true">&rarr;</span></a>
             <a href="contact.html" class="btn-enquire">Enquire Now <span aria-hidden="true">→</span></a>
             <a href="tel:9074371711" class="call-link">Call 90743 71711</a>
           </div>
@@ -1166,10 +1184,9 @@
         </a>
         <p>Premium photography &amp; media solutions for schools, colleges &amp; events across South India. Capturing moments, creating memories.</p>
         <div class="footer-social">
-          <a href="#" aria-label="Instagram">📸</a>
-          <a href="#" aria-label="Facebook">f</a>
-          <a href="#" aria-label="YouTube">▶</a>
-          <a href="#" aria-label="WhatsApp">💬</a>
+          <a href="https://wa.me/919074371711" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.4.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3zM12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-2.9-.4-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg></a>
+          <a href="#" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+          <a href="#" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2C.5 9.1.5 12 .5 12s0 2.9.5 4.8a3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1c.5-1.9.5-4.8.5-4.8s0-2.9-.5-4.8zM9.7 15.5v-7l6 3.5-6 3.5z"/></svg></a>
         </div>
       </div>
 
@@ -1185,12 +1202,12 @@
 
       <div class="footer-col">
         <h4>Our Services</h4>
-        <a href="#">Graduation Albums</a>
-        <a href="#">Smart ID Cards</a>
-        <a href="#">Group Photography</a>
-        <a href="#">Event Coverage</a>
-        <a href="#">Drone Coverage</a>
-        <a href="#">Editing</a>
+        <a href="service-graduation.html">Graduation Albums</a>
+        <a href="service-id-cards.html">Smart ID Cards</a>
+        <a href="service-group-photography.html">Group Photography</a>
+        <a href="service-event-coverage.html">Event Coverage</a>
+        <a href="service-drone-coverage.html">Drone Coverage</a>
+        <a href="service-editing.html">Editing</a>
       </div>
 
       <div class="footer-col footer-contact">
