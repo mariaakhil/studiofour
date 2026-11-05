@@ -604,7 +604,7 @@ img { max-width: 100%; display: block; }
 .vslider-track::-webkit-scrollbar { display: none; }
 
 .vslide {
-  flex: 0 0 calc((100% - 40px) / 3);
+  flex: 0 0 calc((100% - 60px) / 4);   /* 4 vertical reels visible on desktop (5 total, so it scrolls) */
   scroll-snap-align: start;
   background: var(--offwhite);
   border: 1px solid var(--border);
@@ -618,7 +618,7 @@ img { max-width: 100%; display: block; }
 .vslide video {
   display: block;
   width: 100%;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 9 / 16;               /* vertical reel */
   object-fit: cover;
   background: var(--maroon);
 }
@@ -631,7 +631,7 @@ img { max-width: 100%; display: block; }
 @media (max-width: 1024px) {
   .vslider { padding: 56px 5%; }
   .vslider-title { font-size: 30px; }
-  .vslide { flex-basis: calc((100% - 20px) / 2); }
+  .vslide { flex-basis: calc((100% - 20px) / 2.5); }   /* 2.5 visible: peek + scrolls */
 }
 
 /* Mobile: 1 slide with a peek of the next one */
@@ -640,7 +640,7 @@ img { max-width: 100%; display: block; }
   .vslider-head { flex-direction: column; align-items: flex-start; gap: 16px; }
   .vslider-title { font-size: 26px; }
   .vslider-arrows { display: none; }          /* swipe on touch screens */
-  .vslide { flex-basis: 85%; }
+  .vslide { flex-basis: 62%; }                /* peek of the next reel */
 }
 
 /* =========================================================

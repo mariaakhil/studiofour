@@ -174,7 +174,7 @@
       <div class="vslider-track" id="vs-track">
 
         <article class="vslide">
-          <video controls preload="metadata" poster="images/video1-poster.jpg">
+          <video controls playsinline preload="none" poster="images/video1-poster.jpg">
             <source src="videos/video1.mp4" type="video/mp4">
           </video>
           <div class="vslide-info">
@@ -184,7 +184,7 @@
         </article>
 
         <article class="vslide">
-          <video controls preload="metadata" poster="images/video2-poster.jpg">
+          <video controls playsinline preload="none" poster="images/video2-poster.jpg">
             <source src="videos/video2.mp4" type="video/mp4">
           </video>
           <div class="vslide-info">
@@ -194,7 +194,7 @@
         </article>
 
         <article class="vslide">
-          <video controls preload="metadata" poster="images/video3-poster.jpg">
+          <video controls playsinline preload="none" poster="images/video3-poster.jpg">
             <source src="videos/video3.mp4" type="video/mp4">
           </video>
           <div class="vslide-info">
@@ -204,7 +204,7 @@
         </article>
 
         <article class="vslide">
-          <video controls preload="metadata" poster="images/video4-poster.jpg">
+          <video controls playsinline preload="none" poster="images/video4-poster.jpg">
             <source src="videos/video4.mp4" type="video/mp4">
           </video>
           <div class="vslide-info">
@@ -214,7 +214,7 @@
         </article>
 
         <article class="vslide">
-          <video controls preload="metadata" poster="images/video5-poster.jpg">
+          <video controls playsinline preload="none" poster="images/video5-poster.jpg">
             <source src="videos/video5.mp4" type="video/mp4">
           </video>
           <div class="vslide-info">
@@ -863,6 +863,13 @@
       }
       prev.addEventListener('click', function () { track.scrollBy({ left: -step(), behavior: 'smooth' }); });
       next.addEventListener('click', function () { track.scrollBy({ left: step(), behavior: 'smooth' }); });
+      /* only one reel plays at a time */
+      var vids = track.querySelectorAll('video');
+      vids.forEach(function (v) {
+        v.addEventListener('play', function () {
+          vids.forEach(function (o) { if (o !== v) o.pause(); });
+        });
+      });
       track.addEventListener('scroll', update, { passive: true });
       window.addEventListener('resize', update);
       update();
